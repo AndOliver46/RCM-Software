@@ -1,0 +1,89 @@
+# depslib dependency file v1.0
+1666900217 source:d:\workspaces\ws-codeblocks\rcm software ltda\rcmsoftware\main.c
+	"bibliotecas.h"
+	"login.h"
+
+1666900921 d:\workspaces\ws-codeblocks\rcm software ltda\rcmsoftware\bibliotecas.h
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<time.h>
+
+1666901112 d:\workspaces\ws-codeblocks\rcm software ltda\rcmsoftware\login.h
+	"bibliotecas.h"
+	"menuprincipal.h"
+
+1666896930 d:\workspaces\ws-codeblocks\rcm software ltda\rcmsoftware\menuprincipal.h
+	"bibliotecas.h"
+	"login.h"
+	"departamentos.h"
+	"clientes.h"
+	"fornecedores.h"
+	"projetos.h"
+	"funcionarios.h"
+
+1666897023 d:\workspaces\ws-codeblocks\rcm software ltda\rcmsoftware\departamentos.h
+	"bibliotecas.h"
+
+1666893721 d:\workspaces\ws-codeblocks\rcm software ltda\rcmsoftware\clientes.h
+
+1666993224 d:\workspaces\ws-codeblocks\rcm software ltda\rcmsoftware\fornecedores.h
+
+1666990492 d:\workspaces\ws-codeblocks\rcm software ltda\rcmsoftware\projetos.h
+	"menuprincipal.h"
+	"bibliotecas.h"
+	"clientes.h"
+	"funcionarios.h"
+
+1666992379 d:\workspaces\ws-codeblocks\rcm software ltda\rcmsoftware\funcionarios.h
+	"menuprincipal.h"
+	"bibliotecas.h"
+	"departamentos.h"
+
+1666900217 source:d:\workspaces\ws-codeblocks\rcmsoftware\main.c
+	"bibliotecas.h"
+	"login.h"
+
+1666900921 d:\workspaces\ws-codeblocks\rcmsoftware\bibliotecas.h
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<time.h>
+
+1666901112 d:\workspaces\ws-codeblocks\rcmsoftware\login.h
+	"bibliotecas.h"
+	"menuprincipal.h"
+
+1666896930 d:\workspaces\ws-codeblocks\rcmsoftware\menuprincipal.h
+	"bibliotecas.h"
+	"login.h"
+	"departamentos.h"
+	"clientes.h"
+	"fornecedores.h"
+	"projetos.h"
+	"funcionarios.h"
+
+1666897023 d:\workspaces\ws-codeblocks\rcmsoftware\departamentos.h
+	"bibliotecas.h"
+
+1666893721 d:\workspaces\ws-codeblocks\rcmsoftware\clientes.h
+
+1666993224 d:\workspaces\ws-codeblocks\rcmsoftware\fornecedores.h
+
+1666995231 d:\workspaces\ws-codeblocks\rcmsoftware\projetos.h
+	"menuprincipal.h"
+	"bibliotecas.h"
+	"clientes.h"
+	"funcionarios.h"
+
+1666992379 d:\workspaces\ws-codeblocks\rcmsoftware\funcionarios.h
+	"menuprincipal.h"
+	"bibliotecas.h"
+	"departamentos.h"
+

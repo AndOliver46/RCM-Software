@@ -1,0 +1,4 @@
+Código do departamento: 1001
+Nome..................: TI
+Status................: Ativo
+Data de cadastro......: 27/10/2022

@@ -1,0 +1,11 @@
+Leonardo Azevedo
+
+Nome.......................: Leonardo Azevedo
+Departamento...............: TI
+CPF........................: 39966881808
+CEP........................: 05833120
+Telefone...................: 11961733536
+Cargo......................: Analista
+Salario....................: 2560,00
+Data de cadastro no sistema: 27/10/2022
+Disponibilidade de projeto.: Indisponivel

@@ -1,0 +1,49 @@
+# depslib dependency file v1.0
+1662494070 source:c:\users\ander\desktop\faculdade\rcm\rcm software\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<string.h>
+
+1662507470 source:c:\users\m10.m10-06\desktop\rcm software\rcm software\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<string.h>
+
+1662697457 source:c:\users\ander\desktop\faculdade\rcm software ltda\rcm software\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<string.h>
+
+1663780467 source:d:\projetos\rcm software ltda\rcm software\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<string.h>
+	"conio.h"
+
+1665675826 source:d:\workspaces\ws-codeblocks\rcm software ltda\rcm software\main.c
+	"bibliotecas.h"
+	"login.h"
+
+1665676330 d:\workspaces\ws-codeblocks\rcm software ltda\rcm software\bibliotecas.h
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+
+1665676307 d:\workspaces\ws-codeblocks\rcm software ltda\rcm software\login.h
+	"bibliotecas.h"
+	"menuprincipal.h"
+
+1665676044 d:\workspaces\ws-codeblocks\rcm software ltda\rcm software\func-aux.h
+	"bibliotecas.h"
+
+1665676093 d:\workspaces\ws-codeblocks\rcm software ltda\rcm software\menuprincipal.h
+	"bibliotecas.h"
+	"login.h"
+

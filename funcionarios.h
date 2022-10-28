@@ -4,7 +4,9 @@
 #include "menuprincipal.h"
 #include "bibliotecas.h"
 #include "departamentos.h"
-//mais um teste maluco
+
+//Alterado por anderson
+
 typedef struct
 {
     char flogin[50], fNome[50], fSenha[30], fAtivoInativo[8],fpermi[10], fCpf[12], fCep[12], fTelefone[12], fCargo[30], fDataCadastro[11];

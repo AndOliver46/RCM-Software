@@ -1,0 +1,3 @@
+2
+1;root;root;123456;Ativo;TI; ; ; ; ;0,00; ;
+2;Anderson Oliveira de Souza;andoliver;123456;Inativo;TI;42454393867;04883110;11941416022;analista jr;1200,00;28/10/2022;

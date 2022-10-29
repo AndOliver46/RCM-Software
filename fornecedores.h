@@ -31,8 +31,9 @@ void cadfornecedor()
 
         printf("\nCNPJ........: %s\n",forn.cpf);
 
+
         printf("Codigo..........: ");
-        scanf("%6[^\n]",forn.codigo);
+        scanf("%s",forn.codigo);
         getchar();
 
         printf("Razão Social:.......: ");
@@ -40,7 +41,7 @@ void cadfornecedor()
         getchar();
 
         printf("Telefone........: ");
-        scanf("%11[^\n]",forn.fone);
+        scanf("%s",forn.fone);
         getchar();
 
         printf("Endereco........: ");
@@ -48,7 +49,7 @@ void cadfornecedor()
         getchar();
 
         printf("Numero..........: ");
-        scanf("%8[^\n]",forn.numero);
+        scanf("%s",forn.numero);
         getchar();
 
         printf("Bairro..........: ");
@@ -59,8 +60,8 @@ void cadfornecedor()
         scanf("%15[^\n]",forn.cidade);
         getchar();
 
-        printf("Estado..........: ");
-        scanf("%4[^\n]",forn.uf);
+        printf("Estado..........(UF): ");
+        scanf("%s",forn.uf);
         getchar();
 
         strcpy(forn.status,"ATIVO");
@@ -111,8 +112,8 @@ void consulta()
 
     if(cadforn == NULL)
     {
-        printf("ERRO NA ABERTURA DO ARQUIVO.\n");
-
+        printf("NÃO HÁ REGISTROS.\n");
+        getch();
     }
     else
     {
@@ -123,7 +124,6 @@ void consulta()
 
         while(fread(&forn, sizeof(Cadastro),1,cadforn) == 1)
         {
-
             if(strcmp(cnpj,forn.cpf)==0)
             {
 
@@ -325,13 +325,13 @@ void testeCnpj()
                 printf("\n\n****************************************************************\n");
                 printf("                  Este CNPJ já existe na Base de Dados.               ");
                 printf("\n\n****************************************************************\n");
-                system("pause");
+                getch();
                 fclose(cadforn);
                 return;
             }
 
         }
-        sprintf(forn.cpf, "%s", cnpj);
+        sprintf(forn.cpf,"%s",cnpj);
         fclose(cadforn);
         cadfornecedor();
     }
@@ -349,6 +349,7 @@ void relatorio()
     if(cadforn == NULL)
     {
         printf("ERRO NA ABERTURA DO ARQUIVO.\n");
+
 
     }
     else

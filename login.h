@@ -3,12 +3,39 @@
 
 #include "bibliotecas.h"
 #include "menuprincipal.h"
+#include "funcionarios.h"
 
 #define ENTER 13
 #define BACKSPACE 8
 
 void telaLogin(int parametro)
 {
+    //***Início do login, a verificação do usuário na base de dados***
+    FILE *file = fopen("dbfuncionarios.txt", "r"); //Abertura de base de dados de colaboradores para verificação se existe o usuário e senha informada
+    if(file == NULL)//Verificar se o arquivo foi aberto com sucesso, se não, finalizar programa
+    {
+        FILE *file = fopen("dbfuncionarios.txt", "w");
+
+        int i;
+        fprintf(file, "%d\n", 1);
+        fprintf(file, "%i;%s;%s;%s;%s;%s;%s;%s;%s;%s;%.2f;%s;\n", 1, "root", "root", "123456", "Ativo","TI", " ", " ", " ", " ", " "," ");
+        printf("PRIMEIRO ACESSO - Usuario root cadastrado, consultar manual!");
+        fclose(file);
+        getch();
+    }
+
+    FILE *file1 = fopen("dbdepartamentos.txt", "r"); //Abertura de base de dados de colaboradores para verificação se existe o usuário e senha informada
+    if(file1 == NULL)//Verificar se o arquivo foi aberto com sucesso, se não, finalizar programa
+    {
+        FILE *file1 = fopen("dbdepartamentos.txt", "w");
+
+        int i;
+        fprintf(file1, "%d\n", 1);
+        fprintf(file1, "%i,%s,%s,%s,\n", 0,"TI","Ativo","01/01/1970");
+        fclose(file1);
+    }
+    fclose(file1);
+
     cls();
     if(parametro == 0)
     {
@@ -33,7 +60,6 @@ void telaLogin(int parametro)
     getchar();
 
     printf("Senha: ");
-
     int i = 0;
     do
     {
@@ -54,7 +80,8 @@ void telaLogin(int parametro)
         {
             putchar('*');//coloca um * visual no console
             i++;//sobe para a próxima posição [i] para que seja digitado um novo char
-        }else if (senhaDigitada[i] == ENTER)
+        }
+        else if (senhaDigitada[i] == ENTER)
         {
             i++;
         }
@@ -62,21 +89,13 @@ void telaLogin(int parametro)
     while(senhaDigitada[i-1] != ENTER);
     senhaDigitada[i-1] = '\0';//Após o fim do loop, o enter é substituido por um \0 que significa nulo
 
-    //***Início da segunda parte do login, a verificação do usuário na base de dados***
-    FILE *file;
-    file = fopen("dbfuncionarios.txt", "r"); //Abertura de base de dados de colaboradores para verificação se existe o usuário e senha informada
-
-    if(file == NULL)//Verificar se o arquivo foi aberto com sucesso, se não, finalizar programa
-    {
-        printf("\nArquivo de base de dados dbFuncionarios nao foi encontrado!\n");
-        getch();
-        exit(0);
-    }
+    FILE *login;
+    login = fopen("dbfuncionarios.txt", "r"); //Abertura de base de dados de colaboradores para verificação se existe o usuário e senha informada
 
     char linha[256];//Reservar espaço para armazenamento das linhas do loop abaixo
-    fgets(linha, 256, file);//Função auxiliar para pular a primeira linha do arquivo de funcionarios
+    fgets(linha, 256, login);//Função auxiliar para pular a primeira linha do arquivo de funcionarios
 
-    while(fgets(linha, 256, file) != NULL)//Loop para retirar conteúdo das linhas e jogar na variavel acima, enquando a linha for diferente de null
+    while(fgets(linha, 256, login) != NULL)//Loop para retirar conteúdo das linhas e jogar na variavel acima, enquando a linha for diferente de null
     {
         strtok(linha, ";");//Iniciação de função strtok que separa o conteúdo da variavel até o delimitador
         strtok(NULL, ";");//Separa o conteúdo da variavel anterior até o próximo delimitador (Os dois primeiros dados da linha não são utilizados)
@@ -99,14 +118,14 @@ void telaLogin(int parametro)
             printf("Pressione a qualquer tecla para continuar!");
             getch();
 
-            fclose(file);
+            fclose(login);
             menuPrincipal(usuarioDb, departamentoDb);
             break;
         }
     }
     //Se o while acabar na última linha, significa que nenhum colaborador da base de dados atendeu a condição acima
     //Então volta para a função telaLogin passando o parametro 0 (Dados inválidos)
-    fclose(file);
+    fclose(login);
     telaLogin(0);
 }
 #endif // LOGIN_H_INCLUDED

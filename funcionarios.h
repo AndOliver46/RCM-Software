@@ -26,14 +26,15 @@ void exportar(Funcionarios **f, int quant)
     {
         FILE *exportar = fopen("Consulta.csv", "w");
 
-        fprintf(exportar,"Num;Nome;Ativo//Inativo;CPF;Cep;Telefone;Cargo;Data Cadastro\n");
+        fprintf(exportar,"Num;Nome;Ativo/Inativo;CPF;Cep;Telefone;Cargo;Data Cadastro\n");
 
         for (i=0; i < quant; i++)
         {
-            fprintf(exportar, "%i;%s;%s;%s;%s;%s;%s;%s;%s;\n", i+1, f[i]->fNome, f[i]->fAtivoInativo, f[i]->fCpf, f[i]->fCep, f[i]->fTelefone, f[i]->fCargo, f[i]->fDataCadastro);
+            fprintf(exportar, "%i;%s;%s;%s;%s;%s;%s;%s;\n", i+1, f[i]->fNome, f[i]->fAtivoInativo, f[i]->fCpf, f[i]->fCep, f[i]->fTelefone, f[i]->fCargo, f[i]->fDataCadastro);
         }
 
         fclose(exportar);
+        system("start Consulta.csv");
 
         system("cls");
         printf("Exportacao concluida.\n");
@@ -360,7 +361,7 @@ void salvarCadastro(Funcionarios **f, int quant)
     fprintf(file, "%d\n", quant);
     for(i=0; i < quant; i++)
     {
-        fprintf(file, "%i;%s;%s;%s;%s;%s;%s;%s;%s;%s;%.2f;%s;\n", f[i]->fCod, f[i]->fNome, f[i]->flogin, f[i]->fSenha, f[i]->fAtivoInativo,f[i]->fpermi, f[i]->fCpf, f[i]->fCep, f[i]->fTelefone, f[i]->fCargo, f[i]->fsalario,f[i]->fDataCadastro);
+        fprintf(file, "%i;%s;%s;%s;%s;%s;%s;%s;%s;%s;%.2f;%s;\n", f[i]->fCod, f[i]->fNome, f[i]->flogin, f[i]->fSenha, f[i]->fAtivoInativo,f[i]->fpermi, f[i]->fCpf, f[i]->fCep, f[i]->fTelefone, f[i]->fCargo, f[i]->fsalario, f[i]->fDataCadastro);
     }
     fclose(file);
 }

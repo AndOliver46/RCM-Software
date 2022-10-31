@@ -5,7 +5,7 @@ typedef struct //Aqui temos a definição da Struct. Uma vez definida, podemos dec
 //variável com ela(struct cadastro cliente ou struct cadastro funcionario)
 {
     char nome[40], rua[40], bairro[20],cidade[15], uf[4],
-         numero[8], codigo[6], fone[11], cpf[15], status[9];
+         numero[8], codigo[6], fone[17], cpf[15], status[9];
 
 } Cadastro;
 Cadastro forn; //declaração da variável "forn" como sendo do tipo struct cadastro.
@@ -30,7 +30,6 @@ void cadfornecedor()
         cabecalho();
 
         printf("\nCNPJ........: %s\n",forn.cpf);
-
 
         printf("Codigo..........: ");
         scanf("%s",forn.codigo);

@@ -154,12 +154,9 @@ int fCadastrar(Funcionarios **f, int quant)
 
     strcpy(novo->fAtivoInativo, "Ativo");
 
-    //Cria um vetor do tipo Departamento para inserção das structs e manipulação dos dados dos departamentos.
     Departamento *vetorDepartamentos[100];
-    //quantDepar: Define um valor inicial para a quantidade de departamentos cadastrados
     int i, quantDepar = 0;
     int compare = 0;
-
     quantDepar += lerDepartamentos(vetorDepartamentos);
 
     do
@@ -180,7 +177,13 @@ int fCadastrar(Funcionarios **f, int quant)
 
         if(compare == 0)
         {
-            printf("Departamento inexistente ou inativo\n");
+            printf("Departamento inexistente ou inativo (Pressione qualquer tecla para continuar ou 'Esc' para retornar ao menu)");
+            int op = getch();
+            printf("\n");
+            if(op == ESC)
+            {
+                return 0;
+            }
         }
     }
     while(compare != 1);
@@ -268,12 +271,9 @@ void fAtualizar(Funcionarios **f, int quant)
             break;
         case 3:
             ;
-            //Cria um vetor do tipo Departamento para inserção das structs e manipulação dos dados dos departamentos.
             Departamento *vetorDepartamentos[100];
-            //quantDepar: Define um valor inicial para a quantidade de departamentos cadastrados
             int i, quantDepar = 0;
             int compare = 0;
-
             quantDepar += lerDepartamentos(vetorDepartamentos);
 
             do
@@ -283,7 +283,6 @@ void fAtualizar(Funcionarios **f, int quant)
                 getchar();
                 strcpy(novo->fpermi,maiusculo(novo->fpermi));
 
-                int i;
                 for (i=0; i < quantDepar; i++)
                 {
                     if(strcmp(novo->fpermi, vetorDepartamentos[i]->dNome) == 0 && strcmp(vetorDepartamentos[i]->dStatus, "Ativo") == 0)
@@ -295,7 +294,13 @@ void fAtualizar(Funcionarios **f, int quant)
 
                 if(compare == 0)
                 {
-                    printf("Departamento invalido\n");
+                    printf("Departamento inexistente ou inativo (Pressione qualquer tecla para continuar ou 'Esc' para retornar ao menu)");
+                    int op = getch();
+                    printf("\n");
+                    if(op == ESC)
+                    {
+                        return 0;
+                    }
                 }
             }
             while(compare != 1);

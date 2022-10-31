@@ -27,6 +27,7 @@
 #define HWHITE      "\e[0;97m"
 #define HRED        "\e[0;91m"
 
+#define ESC 27
 #define CHAVE 0
 
 //funções auxiliares

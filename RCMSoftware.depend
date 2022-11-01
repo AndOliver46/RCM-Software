@@ -60,7 +60,7 @@
 
 1667335007 d:\workspaces\ws-codeblocks\rcmsoftware\menuprincipal.h
 
-1667337106 d:\workspaces\ws-codeblocks\rcmsoftware\departamentos.h
+1667340188 d:\workspaces\ws-codeblocks\rcmsoftware\departamentos.h
 
 1667337062 d:\workspaces\ws-codeblocks\rcmsoftware\clientes.h
 
@@ -70,7 +70,7 @@
 
 1667336970 d:\workspaces\ws-codeblocks\rcmsoftware\funcionarios.h
 
-1667337378 source:d:\workspaces\ws-codeblocks\rcmsoftware\auxiliares.c
+1667338981 source:d:\workspaces\ws-codeblocks\rcmsoftware\auxiliares.c
 	"bibliotecas.h"
 	"auxiliares.h"
 
@@ -100,10 +100,11 @@
 	"departamentos.h"
 	"projetos.h"
 
-1667337513 source:d:\workspaces\ws-codeblocks\rcmsoftware\departamentos.c
+1667340804 source:d:\workspaces\ws-codeblocks\rcmsoftware\departamentos.c
 	"bibliotecas.h"
 	"departamentos.h"
 	"auxiliares.h"
+	"funcionarios.h"
 
 1667337613 source:d:\workspaces\ws-codeblocks\rcmsoftware\funcionarios.c
 	"bibliotecas.h"

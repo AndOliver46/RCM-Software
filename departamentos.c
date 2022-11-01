@@ -1,6 +1,7 @@
 #include "bibliotecas.h"
 #include "departamentos.h"
 #include "auxiliares.h"
+#include "funcionarios.h"
 
 int cadastrarDepartamento(Departamento **vetor, int quant, int tam)
 {
@@ -51,13 +52,13 @@ void consultarDepartamento(Departamento **vetor, int quant)
 
     printf("\n----------------------------------------------------------------------------------------------------------------\t\n");
     //Mostrar rótulos e formato de colunas reservando espaços para cada dado
-    printf("%-7s%-20s%-10s%-13s\n", "Id", "Nome", "Status", "Data Cadastro");
+    printf("%-7s%-20s%-15s%-10s%-13s\n", "Id", "Nome", "Funcionarios","Status", "Data Cadastro");
 
     //Loop para percorrer toda a struct de departamentos mostrando cada um em uma linha
     int i;
     for (i=0; i < quant; i++)
     {
-        printf("%-7i%-20s%-10s%-13s\n", vetor[i]->dId+1001, vetor[i]->dNome, vetor[i]->dStatus, vetor[i]->dDataCadastro);
+        printf("%-7i%-20s%-15i%-10s%-13s\n", vetor[i]->dId+1001, vetor[i]->dNome, quantidadeDeFuncionarios(vetor[i]->dNome),vetor[i]->dStatus, vetor[i]->dDataCadastro);
     }
     printf("\n----------------------------------------------------------------------------------------------------------------\t\n");
 }
@@ -107,13 +108,13 @@ void relatorioDepartamento(Departamento **vetor, int quant)
 
         printf("\n----------------------------------------------------------------------------------------------------------------\t\n");
         //Mostrar rótulos e formato de colunas reservando espaços para cada dado
-        printf("%-7s%-20s%-10s%-13s\n", "Id", "Nome", "Status", "Data Cadastro");
+        printf("%-7s%-20s%-15s%-10s%-13s\n", "Id", "Nome", "Funcionarios", "Status", "Data Cadastro");
 
         //Loop para percorrer toda a struct de departamentos mostrando cada um em uma linha
         int i;
         for (i=0; i < quant; i++)
         {
-            printf("%-7i%-20s%-10s%-13s\n", vetor[i]->dId+1001, vetor[i]->dNome, vetor[i]->dStatus, vetor[i]->dDataCadastro);
+            printf("%-7i%-20s%-15i%-10s%-13s\n", vetor[i]->dId+1001, vetor[i]->dNome, quantidadeDeFuncionarios(vetor[i]->dNome), vetor[i]->dStatus, vetor[i]->dDataCadastro);
         }
         printf("\n----------------------------------------------------------------------------------------------------------------\t\n");
 
@@ -135,9 +136,10 @@ void relatorioDepartamento(Departamento **vetor, int quant)
             getchar();
             id -= 1001;
 
-            FILE *file = fopen("Relatorio individual.txt", "w");
+            FILE *file = fopen("Relatorio individual - Departamentos.txt", "w");
             fprintf(file, "Código do departamento: %d\n", vetor[id]->dId+1001);
             fprintf(file, "Nome..................: %s\n", vetor[id]->dNome);
+            fprintf(file, "Funcionarios..........: %i\n", quantidadeDeFuncionarios(vetor[id]->dNome));
             fprintf(file, "Status................: %s\n", vetor[id]->dStatus);
             fprintf(file, "Data de cadastro......: %s\n", vetor[id]->dDataCadastro);
 
@@ -149,14 +151,14 @@ void relatorioDepartamento(Departamento **vetor, int quant)
             break;
         case 2:
             ;
-            FILE *txtFile = fopen("Relatorio geral.txt", "w");
-            fprintf(txtFile, "%-7s%-20s%-10s%-13s\n", "Id", "Nome", "Status", "Data Cadastro");
+            FILE *txtFile = fopen("Relatorio geral - Departamentos.txt", "w");
+            fprintf(txtFile, "%-7s%-20s%-15s%-10s%-13s\n", "Id", "Nome", "Funcionarios", "Status", "Data Cadastro");
 
             //Loop para percorrer toda a struct de departamentos mostrando cada um em uma linha
             int i;
             for (i=0; i < quant; i++)
             {
-                fprintf(txtFile, "%-7i%-20s%-10s%-13s\n", vetor[i]->dId+1001, vetor[i]->dNome, vetor[i]->dStatus, vetor[i]->dDataCadastro);
+                fprintf(txtFile, "%-7i%-20s%-15i%-10s%-13s\n", vetor[i]->dId+1001, vetor[i]->dNome, quantidadeDeFuncionarios(vetor[i]->dNome), vetor[i]->dStatus, vetor[i]->dDataCadastro);
             }
 
             printf("Relatório gerado com sucesso!");
@@ -166,14 +168,14 @@ void relatorioDepartamento(Departamento **vetor, int quant)
             break;
         case 3:
             ;
-            FILE *csvFile = fopen("Relatorio geral.csv", "w");
-            fprintf(csvFile, "%-7s;%-20s;%-10s;%-13s;\n", "Id", "Nome", "Status", "Data Cadastro");
+            FILE *csvFile = fopen("Relatorio geral - Departamentos.csv", "w");
+            fprintf(csvFile, "%-7s;%-20s;%-15s;%-10s;%-13s;\n", "Id", "Nome", "Funcionarios", "Status", "Data Cadastro");
 
             //Loop para percorrer toda a struct de departamentos mostrando cada um em uma linha
             int j;
             for (j=0; j < quant; j++)
             {
-                fprintf(csvFile, "%-7i;%-20s;%-10s;%-13s;\n", vetor[j]->dId+1001, vetor[j]->dNome, vetor[j]->dStatus, vetor[j]->dDataCadastro);
+                fprintf(csvFile, "%-7i;%-20s;%-15i;%-10s;%-13s;\n", vetor[j]->dId+1001, vetor[j]->dNome, quantidadeDeFuncionarios(vetor[j]->dNome), vetor[j]->dStatus, vetor[j]->dDataCadastro);
             }
 
             printf("Relatório gerado com sucesso!");
@@ -187,6 +189,21 @@ void relatorioDepartamento(Departamento **vetor, int quant)
         }
     }
     while(opcao == 0);
+}
+
+int quantidadeDeFuncionarios(char departamento[]){
+    Funcionarios *lista[1000];
+    int quantTotal = lerArquivo(lista);
+    int count = 0;
+
+    int i;
+    for(i = 0; i < quantTotal; i++){
+        if(strcmp(lista[i]->fpermi,departamento) == 0){
+            count++;
+        }
+    }
+
+    return count;
 }
 
 void salvarDepartamentos(Departamento **vetor, int quant)
@@ -203,7 +220,7 @@ void salvarDepartamentos(Departamento **vetor, int quant)
         for(i=0; i < quant; i++)
         {
             //Inserir dados de cada struct que está dentro do vetor no arquivo, com a formatação separada por virgulas
-            fprintf(file,"%i,%s,%s,%s,\n", vetor[i]->dId, vetor[i]->dNome, vetor[i]->dStatus, vetor[i]->dDataCadastro);
+            fprintf(file,"%i,%s,%s,%s,%i,\n", vetor[i]->dId, vetor[i]->dNome, vetor[i]->dStatus, vetor[i]->dDataCadastro, quantidadeDeFuncionarios(vetor[i]->dNome));
         }
         fclose(file);
     }
@@ -240,6 +257,7 @@ int lerDepartamentos(Departamento **vetor)
             strcpy(novo->dNome,strtok(NULL, ","));
             strcpy(novo->dStatus,strtok(NULL, ","));
             strcpy(novo->dDataCadastro,strtok(NULL, ","));
+
 
             //Salva novo departamento no vetor de departamentos na posição i
             vetor[i] = novo;

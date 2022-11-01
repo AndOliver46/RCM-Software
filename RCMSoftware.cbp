@@ -31,16 +31,41 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="auxiliares.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="auxiliares.h" />
 		<Unit filename="bibliotecas.h" />
+		<Unit filename="clientes.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="clientes.h" />
+		<Unit filename="departamentos.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="departamentos.h" />
+		<Unit filename="fornecedores.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="fornecedores.h" />
+		<Unit filename="funcionarios.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="funcionarios.h" />
+		<Unit filename="login.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="login.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="menuprincipal.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="menuprincipal.h" />
+		<Unit filename="projetos.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="projetos.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

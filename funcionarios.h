@@ -26,11 +26,11 @@ void exportar(Funcionarios **f, int quant)
     {
         FILE *exportar = fopen("Consulta.csv", "w");
 
-        fprintf(exportar,"Num;Nome;Ativo/Inativo;CPF;Cep;Telefone;Cargo;Data Cadastro\n");
+        fprintf(exportar,"Num;Nome;Ativo/Inativo;Departamento;CPF;Cep;Telefone;Cargo;Salario;Data Cadastro\n");
 
         for (i=0; i < quant; i++)
         {
-            fprintf(exportar, "%i;%s;%s;%s;%s;%s;%s;%s;\n", i+1, f[i]->fNome, f[i]->fAtivoInativo, f[i]->fCpf, f[i]->fCep, f[i]->fTelefone, f[i]->fCargo, f[i]->fDataCadastro);
+            fprintf(exportar, "%i;%s;%s;%s;%s;%s;%s;%s;%f;%s;\n", i+1, f[i]->fNome, f[i]->fAtivoInativo, f[i]->fpermi, f[i]->fCpf, f[i]->fCep, f[i]->fTelefone, f[i]->fCargo, f[i]->fsalario, f[i]->fDataCadastro);
         }
 
         fclose(exportar);
@@ -38,7 +38,7 @@ void exportar(Funcionarios **f, int quant)
 
         system("cls");
         printf("Exportacao concluida.\n");
-        system("pause");
+        getch();
     }
 }
 
@@ -89,14 +89,11 @@ void consultarFuncionarios(Funcionarios **f, int quant)
 
     printf("\n\nLista de colaboradores:\n\n");
     printf("---------------------------------------------------------------------------------------------------------------------\n");
-    printf("%-7s%-35s%-15s%-12s%-15s%-20s%-14s\n", "Num", "Nome", "CPF", "Cep", "Telefone", "Cargo", "Data cadastro");
+    printf("%-7s%-35s%-15s%-12s%-15s%-20s%-14s\n", "Num", "Nome", "CPF", "Cep", "Telefone", "Cargo", "Ativo/Inativo");
 
     for (i=0; i < quant; i++)
     {
-        if(strcmp(f[i]->fAtivoInativo,"Ativo") == 0)
-        {
-            printf("%-7i%-35s%-15s%-12s%-15s%-20s%-14s\n", i+1, f[i]->fNome, f[i]->fCpf, f[i]->fCep, f[i]->fTelefone, f[i]->fCargo, f[i]->fDataCadastro);
-        }
+        printf("%-7i%-35s%-15s%-12s%-15s%-20s%-14s\n", i+1, f[i]->fNome, f[i]->fCpf, f[i]->fCep, f[i]->fTelefone, f[i]->fCargo, f[i]->fAtivoInativo);
     }
 
     printf("---------------------------------------------------------------------------------------------------------------------\n\n");
@@ -353,6 +350,7 @@ void fAtualizar(Funcionarios **f, int quant)
     else
     {
         printf("Codigo invalido");
+        getch();
     }
 
 
@@ -424,13 +422,13 @@ void fRelatorio(Funcionarios **f, int quant)
         fclose(file);
 
         printf("\nRelatorio gerado com sucesso!\n");
-        system("pause");
+        getch();
 
     }
     else
     {
         printf("Nao foi possivel gerar o relatorio.\n");
-        system("pause");
+        getch();
     }
 }
 

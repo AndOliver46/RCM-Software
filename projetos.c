@@ -74,28 +74,34 @@ void cadProjeto()
         printf("Razão Social: %s\n",proj.cliente);
         printf("CNPJ........: %s\n", proj.cpf);
 
-        Projeto projVerif;
-        FILE *consultaProj;
-        consultaProj = fopen("projetos.txt", "r");
+        char numProj[5];
         int verificacao = 0;
+
         while(verificacao == 0)
         {
-            char numProj[5];
             printf("Numero do projeto.: ");
             scanf("%s",numProj);
             getchar();
 
-            fread(&projVerif, sizeof(Projeto),1,consultaProj);
-            if(strcmp(projVerif.projetoN,numProj) == 0)
+            Projeto projVerif;
+            FILE *consultaProj;
+            consultaProj = fopen("projetos.txt", "r");
+
+            while(fread(&projVerif, sizeof(Projeto),1,consultaProj) == 1)
             {
-                printf("Já existe um projeto com esse número!\n");
-            }
-            else if((fread(&projVerif, sizeof(Projeto),1,consultaProj)) == 0)
-            {
-                strcpy(numProj,proj.projetoN);
+                if(strcmp(projVerif.projetoN,numProj) == 0)
+                {
+                    printf("Já existe um projeto com esse número!\n");
+                    verificacao = 0;
+                    fclose(consultaProj);
+                    break;
+                }
                 verificacao = 1;
             }
+            fclose(consultaProj);
         }
+        strcpy(proj.projetoN,numProj);
+
 
         printf("Titulo........: ");
         scanf("%30[^\n]",proj.titulo);
@@ -179,22 +185,20 @@ void cadProjeto()
         printf("Descricao: %s\n\n", proj.descricao);
         printf("Status do Projeto: %s\n\n",proj.status);
 
-        printf("Todas as Informacoes estao Corretas? (1-SIM / 2-NAO)\n\n");
+        printf("Todas as informacoes estao corretas? (1-SIM / 2-NAO) ");
         scanf("%d",&conf);
 
         if(conf == 1)
         {
-
             fwrite(&proj, sizeof(Projeto),1,cadproj);
-
-            printf("****** PROJETO CADASTRADO COM SUCESSO! ******\n\n");
+            printf("\n\n****** PROJETO CADASTRADO COM SUCESSO! ******\n\n");
         }
         else
         {
-            printf("****** PROJETO NAO CADASTRADO. ******\n\n");
+            printf("\n\n****** PROJETO NAO CADASTRADO. ******\n\n");
         }
 
-        printf("Deseja Cadastrar Novo Projeto(1-SIM / 2-NAO)? ");
+        printf("Deseja cadastrar um novo projeto? (1-SIM / 2-NAO) ");
         scanf("%d",&opcao);
         getchar();
 

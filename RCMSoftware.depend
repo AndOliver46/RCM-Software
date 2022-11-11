@@ -43,7 +43,7 @@
 	"bibliotecas.h"
 	"departamentos.h"
 
-1666900217 source:d:\workspaces\ws-codeblocks\rcmsoftware\main.c
+1668207049 source:d:\workspaces\ws-codeblocks\rcmsoftware\main.c
 	"bibliotecas.h"
 	"login.h"
 
@@ -62,7 +62,7 @@
 
 1667340188 d:\workspaces\ws-codeblocks\rcmsoftware\departamentos.h
 
-1667337062 d:\workspaces\ws-codeblocks\rcmsoftware\clientes.h
+1668206517 d:\workspaces\ws-codeblocks\rcmsoftware\clientes.h
 
 1667336304 d:\workspaces\ws-codeblocks\rcmsoftware\fornecedores.h
 
@@ -76,8 +76,9 @@
 
 1667337765 d:\workspaces\ws-codeblocks\rcmsoftware\auxiliares.h
 
-1667337490 source:d:\workspaces\ws-codeblocks\rcmsoftware\clientes.c
+1668207049 source:d:\workspaces\ws-codeblocks\rcmsoftware\clientes.c
 	"bibliotecas.h"
+	"auxiliares.h"
 	"clientes.h"
 
 1667337336 source:d:\workspaces\ws-codeblocks\rcmsoftware\fornecedores.c
@@ -112,7 +113,7 @@
 	"departamentos.h"
 	"auxiliares.h"
 
-1667606963 source:d:\workspaces\ws-codeblocks\rcmsoftware\projetos.c
+1667607216 source:d:\workspaces\ws-codeblocks\rcmsoftware\projetos.c
 	"bibliotecas.h"
 	"projetos.h"
 	"clientes.h"

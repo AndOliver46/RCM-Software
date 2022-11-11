@@ -14,16 +14,16 @@ void menuPrincipal(char usuarioLogado[], char nivelPermissao[])
     {
         cls();
         printf("------------------------------------------------------------------------------------------------------------------------");
-        printf("                                RCM Software Development LTDA\n");
-        printf("                                Usuário logado: %s\n", usuarioLogado);
-        printf("                                Nível de permissão: %s\n", nivelPermissao);
-        printf("                                Data: %s\n", dataAtual());
+        printf("\t\t\t\tRCM Software Development LTDA\n");
+        printf("\tUsuário logado: %s\n", usuarioLogado);
+        printf("\tNível de permissão: %s\n", nivelPermissao);
+        printf("\tData: %s\n", dataAtual());
         printf("------------------------------------------------------------------------------------------------------------------------\n\n");
 
-        printf("Módulos: \n\n");
-        printf("[0]Sair\n[1]Funcionários\n[2]Clientes\n[3]Fornecedores\n[4]Departamentos\n[5]Projetos\n\n");
+        printf("\tMódulos: \n\n");
+        printf("\t[0]Sair\n\t[1]Funcionários\n\t[2]Clientes\n\t[3]Fornecedores\n\t[4]Departamentos\n\t[5]Projetos\n\n");
 
-        printf("Opção: ");
+        printf("\tOpção: ");
         scanf("%i", &opcao);
 
         switch(opcao)

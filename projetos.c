@@ -8,28 +8,25 @@ Cliente ctt;
 
 void telaProjetos()
 {
-    setlocale(LC_ALL, "Portuguese"); //permite o uso de acentos e caracteres específicos do português.
-
-    system("color f1"); //muda as cores da fonte e background no programa.
-
     system ("cls");
-
     int opcao = 0;
+
     do
     {
         cabecalho();
-        printf("                       *****************************\n");
-        printf("                       * 1 - Novo projeto          *\n");
-        printf("                       * 2 - Consulta              *\n");
-        printf("                       * 3 - Atualiza              *\n");
-        printf("                       * 4 - Relatório             *\n");
-        printf("                       * 5 - Voltar                *\n");
-        printf("                       *****************************\n\n");
-        printf("                       OPÇÃO: ");
+        printf("\n Projetos\n\n");
+
+        printf(" [0]Voltar\n");
+        printf(" [1]Novo\n");
+        printf(" [2]Consultar\n");
+        printf(" [3]Atualizar\n");
+        printf(" [4]Gerar relatório\n");
+
+        printf("\n Opção: ");
         scanf("%d",&opcao);
         getchar();
 
-        switch (opcao)
+        switch(opcao)
         {
         case 1:
             chamaCliente();
@@ -43,16 +40,16 @@ void telaProjetos()
         case 4:
             projRelatorio();
             break;
-        case 5:
+        case 0:
             return;
             break;
         default:
-            printf("OPÇÃO INVÁLIDA!\n\n");
+            printf(" \nOPÇÃO INVÁLIDA!\n\n");
             getch();
             break;
         }
     }
-    while(opcao != 5);
+    while(opcao != 0);
 }
 
 void cadProjeto()
@@ -72,38 +69,13 @@ void cadProjeto()
     else
     {
         printf("Razão Social: %s\n",proj.cliente);
-        printf("CNPJ........: %s\n", proj.cpf);
+        printf("CPF/CNPJ: %s\n", proj.cpf);
 
-        char numProj[5];
-        int verificacao = 0;
+        printf("Numero do projeto: ");
+        scanf("%s",proj.projetoN);
+        getchar();
 
-        while(verificacao == 0)
-        {
-            printf("Numero do projeto.: ");
-            scanf("%s",numProj);
-            getchar();
-
-            Projeto projVerif;
-            FILE *consultaProj;
-            consultaProj = fopen("projetos.txt", "r");
-
-            while(fread(&projVerif, sizeof(Projeto),1,consultaProj) == 1)
-            {
-                if(strcmp(projVerif.projetoN,numProj) == 0)
-                {
-                    printf("Já existe um projeto com esse número!\n");
-                    verificacao = 0;
-                    fclose(consultaProj);
-                    break;
-                }
-                verificacao = 1;
-            }
-            fclose(consultaProj);
-        }
-        strcpy(proj.projetoN,numProj);
-
-
-        printf("Titulo........: ");
+        printf("Titulo: ");
         scanf("%30[^\n]",proj.titulo);
         getchar();
 
@@ -172,6 +144,7 @@ void cadProjeto()
         getchar();
 
         system ("cls");
+        cabecalho();
 
         printf("\n\nProjeto Numero: %s\n", proj.projetoN);
         printf("Titulo: %s\n", proj.titulo);
@@ -229,7 +202,7 @@ void cadProjeto()
 void statusA()
 {
     cabecalho();
-    printf("******************************************** PROJETOS EM ANALISE **************************************************\n\n");
+    printf("******************************************** PROJETOS EM ANALISE **************************************************\n");
 
     FILE *cadproj;
 
@@ -268,7 +241,7 @@ void statusA()
 void statusP()
 {
     cabecalho();
-    printf("******************************************** PROJETOS EM PROCESSO **************************************************\n\n");
+    printf("******************************************** PROJETOS EM PROCESSO **************************************************\n");
 
     FILE *cadproj;
 
@@ -307,7 +280,7 @@ void statusP()
 void statusC()
 {
     cabecalho();
-    printf("******************************************** PROJETOS CONCLUIDOS **************************************************\n\n");
+    printf("******************************************** PROJETOS CONCLUIDOS **************************************************\n");
 
     FILE *cadproj;
 
@@ -383,13 +356,14 @@ void consultaProj()
     do
     {
         cabecalho();
-        printf("                       *****************************\n");
-        printf("                       * 1 - Projetos em Analise   *\n");
-        printf("                       * 2 - Projetos em Producao  *\n");
-        printf("                       * 3 - Projetos Concluidos   *\n");
-        printf("                       * 4 - Voltar                *\n");
-        printf("                       *****************************\n\n");
-        printf("                       OPÇÃO: ");
+        printf("\n Consultar\n\n");
+
+        printf(" [0]Voltar\n");
+        printf(" [1]Projetos em Analise\n");
+        printf(" [2]Projetos em Producão\n");
+        printf(" [3]Projetos concluídos\n\n");
+
+        printf(" Opção: ");
         scanf("%d",&opcao);
         getchar();
 
@@ -405,7 +379,7 @@ void consultaProj()
         case 3:
             statusC();
             break;
-        case 4:
+        case 0:
             return;
             break;
         default:
@@ -414,12 +388,14 @@ void consultaProj()
             break;
         }
     }
-    while(opcao != 4);
+    while(opcao != 0);
 }
 
 void chamaCliente()
 {
     system("cls");
+    cabecalho();
+
     char ddcpfcnpj[15];
 
     FILE *arquivo;
@@ -449,10 +425,7 @@ void chamaCliente()
         }
 
     }
-
-    printf("\n\n****************************************************************\n");
-    printf("                         CLIENTE NAO CADASTRADO                       ");
-    printf("\n\n****************************************************************\n");
+    printf(" CLIENTE NAO CADASTRADO!");
     getch();
 
     fclose(arquivo);
@@ -479,7 +452,7 @@ void telaAtualiza()
     else
     {
 
-        printf("Numero do Projeto: ");
+        printf("\n Numero do Projeto: ");
         scanf("%s",prjt);
         getchar();
 
@@ -489,8 +462,9 @@ void telaAtualiza()
             if(strcmp(proj.projetoN, prjt)== 0)
             {
                 system("cls");
-                printf("\n\n****************************************************************\n");
-                printf("\n\nProjeto Numero: %s\n", proj.projetoN);
+                cabecalho();
+
+                printf("\nProjeto Numero: %s\n", proj.projetoN);
                 printf("Titulo: %s\n", proj.titulo);
                 printf("Cliente: %s\n", proj.cliente);
                 printf("CPF/CNPJ: %s\n", proj.cpf);
@@ -501,46 +475,50 @@ void telaAtualiza()
                 printf("Valor do Projeto: %.2f\n", proj.valor);
                 printf("Forma de Pagamento: %s R$%.2f\n",proj.tPag,proj.fPag);
                 printf("Descricao: %s\n\n", proj.descricao);
-                printf("Status do Projeto: %s\n\n",proj.status);
 
-                printf("    1- Atualizar Status\n");
-                printf("    2- Concluir Projeto\n");
-                printf("    3- Sair\n");
-                printf("    Escolha a Opcao desejada: \n\n");
+                printf(" Status do Projeto: %s\n\n",proj.status);
+
+                printf(" [0]Sair\n");
+                printf(" [1]Atualizar Status\n");
+                printf(" [2]Concluir projeto\n");
+
+                printf("\n Opção: ");
                 scanf("%d",&opt);
 
                 switch(opt)
                 {
                 case 1:
-
-
-                    printf("(1-Analise / 2-Processo)");
-                    printf("Escolha o Novo Status do Projeto: ");
+                    printf("\n Escolha o novo status do projeto (1-Analise / 2-Processo): ");
                     scanf("%d",&optstatus);
                     getchar();
                     if(optstatus == 1)
                     {
                         strcpy(proj.status, "EM ANALISE");
+                        printf("Alteração realizada!");
+                        getchar();
                     }
                     if(optstatus == 2)
                     {
                         strcpy(proj.status, "EM PROCESSO");
+                        printf("Alteração realizada!");
+                        getchar();
                     }
                     fwrite(&proj, sizeof(Projeto),1,pTemp);
 
                     break;
                 case 2:
-
-                    printf("Data de Entrega.....: ");
-                    scanf("%d %d %d",&proj.conclusao[0],&proj.conclusao[1],&proj.conclusao[2]);
+                    printf("\n Data de entrega: ");
+                    scanf("%d/%d/%d",&proj.conclusao[0],&proj.conclusao[1],&proj.conclusao[2]);
                     getchar();
 
                     strcpy(proj.status, "CONCLUIDO");
 
                     fwrite(&proj, sizeof(Projeto),1,pTemp);
+                    printf(" Alteração realizada!");
+                    getchar();
 
                     break;
-                case 3:
+                case 0:
                     fclose(cadproj);
                     fclose(pTemp);
                     remove("projtemp.txt");

@@ -13,17 +13,17 @@ void menuPrincipal(char usuarioLogado[], char nivelPermissao[])
     do
     {
         cls();
-        printf("------------------------------------------------------------------------------------------------------------------------");
-        printf("\t\t\t\tRCM Software Development LTDA\n");
-        printf("\tUsuário logado: %s\n", usuarioLogado);
-        printf("\tNível de permissão: %s\n", nivelPermissao);
-        printf("\tData: %s\n", dataAtual());
-        printf("------------------------------------------------------------------------------------------------------------------------\n\n");
+        printf("********************************************************************************************************************\n");
+        printf("\t\t\t\t\t\tRCM SOFTWARE DEVELOPMENT\n");
+        printf("\t\t\t\t\t\tUsuário logado: %s\n", usuarioLogado);
+        printf("\t\t\t\t\t\tNível de permissão: %s\n", nivelPermissao);
+        printf("\t\t\t\t\t\tData: %s\n", dataAtual());
+        printf("********************************************************************************************************************\n\n");
 
-        printf("\tMódulos: \n\n");
-        printf("\t[0]Sair\n\t[1]Funcionários\n\t[2]Clientes\n\t[3]Fornecedores\n\t[4]Departamentos\n\t[5]Projetos\n\n");
+        printf(" Módulos: \n\n");
+        printf(" [0]Sair\n [1]Funcionários\n [2]Clientes\n [3]Fornecedores\n [4]Departamentos\n [5]Projetos\n\n");
 
-        printf("\tOpção: ");
+        printf(" Opção: ");
         scanf("%i", &opcao);
 
         switch(opcao)

@@ -6,7 +6,6 @@ typedef struct //Aqui temos a definição da Struct. Uma vez definida, podemos dec
 {
     char nome[40], rua[40], bairro[20],cidade[15], uf[4],
          numero[8], codigo[6], fone[17], cpf[15], status[9];
-
 } Cadastro;
 Cadastro forn; //declaração da variável "forn" como sendo do tipo struct cadastro.
 
@@ -29,37 +28,39 @@ void cadfornecedor()
         system("cls");
         cabecalho();
 
-        printf("\nCNPJ........: %s\n",forn.cpf);
+        printf("\nCadastro de fornecedor\n");
 
-        printf("Codigo..........: ");
+        printf("\nCNPJ: %s\n",forn.cpf);
+
+        printf("Codigo: ");
         scanf("%s",forn.codigo);
         getchar();
 
-        printf("Razão Social:.......: ");
+        printf("Razão social: ");
         scanf("%40[^\n]",forn.nome);
         getchar();
 
-        printf("Telefone........: ");
+        printf("Telefone: ");
         scanf("%s",forn.fone);
         getchar();
 
-        printf("Endereco........: ");
+        printf("Logradouro: ");
         scanf("%40[^\n]",forn.rua);
         getchar();
 
-        printf("Numero..........: ");
+        printf("Numero: ");
         scanf("%s",forn.numero);
         getchar();
 
-        printf("Bairro..........: ");
+        printf("Bairro: ");
         scanf("%20[^\n]",forn.bairro);
         getchar();
 
-        printf("Cidade..........: ");
+        printf("Cidade: ");
         scanf("%15[^\n]",forn.cidade);
         getchar();
 
-        printf("Estado..........(UF): ");
+        printf("Estado(UF): ");
         scanf("%s",forn.uf);
         getchar();
 
@@ -83,9 +84,7 @@ void cadfornecedor()
         }
         else
         {
-            printf("\n\n****************************************************************\n");
-            printf("                            OPÇÃO INVÁLIDA.                           ");
-            printf("\n\n****************************************************************\n");
+            printf("\nOPÇÃO INVÁLIDA.\n");
             system("pause");
         }
     }
@@ -117,8 +116,6 @@ void consulta()
         {
             if(strcmp(cnpj,forn.cpf)==0)
             {
-
-                printf("\n\n****************************************************************\n");
                 printf("Código: %s\n", forn.codigo);
                 printf("Razão Social: %s\n", forn.nome);
                 printf("CNPJ: %s\n", forn.cpf);
@@ -365,57 +362,6 @@ void relatorio()
     getch();
 }
 
-void fornecedores()
-
-{
-    setlocale(LC_ALL, "Portuguese"); //permite o uso de acentos e caracteres específicos do português.
-
-    system("color f1"); //muda as cores da fonte e background no programa.
-
-
-    int opcao;
-    do
-    {
-        opcao = 0;
-        cabecalho();
-        printf("                       ***********************\n");
-        printf("                       * 1 - Cadastro        *\n");
-        printf("                       * 2 - Consulta        *\n");
-        printf("                       * 3 - Ativar/Inativar *\n");
-        printf("                       * 4 - Relatório       *\n");
-        printf("                       * 5 - Voltar          *\n");
-        printf("                       ***********************\n\n");
-        printf("                       OPÇÃO: ");
-        scanf("%d",&opcao);
-        getchar();
-
-        system("cls");
-        switch (opcao)
-        {
-        case 1:
-            testeCnpj();
-            break;
-        case 2:
-            consulta();
-            break;
-        case 3:
-            ativaInativa();
-            break;
-        case 4:
-            relatorioMenu();
-            break;
-        case 5:
-            break;
-        default:
-            printf("OPÇÃO INVÁLIDA!\n\n");
-            getch();
-            break;
-
-        }
-    }
-    while(opcao != 5);
-}
-
 void ativaInativa()
 {
     int opcao;
@@ -423,12 +369,12 @@ void ativaInativa()
     {
         opcao = 0;
         cabecalho();
-        printf("                       **********************\n");
-        printf("                       * 1 - Ativar         *\n");
-        printf("                       * 2 - Inativar       *\n");
-        printf("                       * 3 - Voltar         *\n");
-        printf("                       **********************\n\n");
-        printf("                       OPÇÃO: ");
+
+        printf(" [0]Voltar\n");
+        printf(" [1]Ativar\n");
+        printf(" [2]Inativar\n");
+
+        printf("\n Opção: ");
         scanf("%d",&opcao);
         getchar();
 
@@ -441,7 +387,7 @@ void ativaInativa()
         case 2:
             inativaForn();
             break;
-        case 3:
+        case 0:
             break;
         default:
             printf("OPÇÃO INVÁLIDA!\n\n");
@@ -450,7 +396,7 @@ void ativaInativa()
 
         }
     }
-    while(opcao != 3);
+    while(opcao != 0);
 }
 
 void relAtivo()
@@ -533,15 +479,15 @@ void relatorioMenu()
     int opcao;
     do
     {
-        opcao = 0;
+        opcao = 1;
         cabecalho();
-        printf("                       **********************\n");
-        printf("                       * 1 - Ativos         *\n");
-        printf("                       * 2 - Inativos       *\n");
-        printf("                       * 3 - Total          *\n");
-        printf("                       * 4 - Voltar         *\n");
-        printf("                       **********************\n\n");
-        printf("                       OPÇÃO: ");
+
+        printf(" [0]Voltar\n");
+        printf(" [1]Ativos\n");
+        printf(" [2]Inativos\n");
+        printf(" [3]Total\n\n");
+
+        printf(" Opção: ");
         scanf("%d",&opcao);
         getchar();
 
@@ -557,7 +503,7 @@ void relatorioMenu()
         case 3:
             relatorio();
             break;
-        case 4:
+        case 0:
             break;
         default:
             printf("OPÇÃO INVÁLIDA!\n\n");
@@ -566,5 +512,52 @@ void relatorioMenu()
 
         }
     }
-    while(opcao != 4);
+    while(opcao != 0);
+}
+
+void fornecedores()
+
+{
+    int opcao;
+    do
+    {
+        opcao = 0;
+        cabecalho();
+
+        printf("\n Fornecedores\n\n");
+
+        printf(" [0]Voltar\n");
+        printf(" [1]Cadastro\n");
+        printf(" [2]Consulta\n");
+        printf(" [3]Ativar/Inativar\n");
+        printf(" [4]Relatório\n");
+
+        printf("\n Opção: ");
+        scanf("%d",&opcao);
+        getchar();
+
+        system("cls");
+        switch (opcao)
+        {
+        case 1:
+            testeCnpj();
+            break;
+        case 2:
+            consulta();
+            break;
+        case 3:
+            ativaInativa();
+            break;
+        case 4:
+            relatorioMenu();
+            break;
+        case 0:
+            break;
+        default:
+            printf("OPÇÃO INVÁLIDA!\n\n");
+            getch();
+            break;
+        }
+    }
+    while(opcao != 0);
 }

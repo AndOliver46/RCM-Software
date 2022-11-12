@@ -7,8 +7,8 @@ void exportar(Funcionarios **f, int quant)
 {
     int escolhaExp, i;
 
-    printf("----------Exportacao----------\n");
-    printf("[1]Sim\n[2]Nao\nGostaria de exportar: ");
+    printf(" Exportacao\n\n");
+    printf(" [1]Sim\n [2]Nao\n \n Gostaria de exportar? ");
     scanf("%i", &escolhaExp);
     getchar();
     if(escolhaExp == 1)
@@ -75,8 +75,10 @@ int lerArquivo(Funcionarios **f)
 void consultarFuncionarios(Funcionarios **f, int quant)
 {
     int i;
+    system("cls");
+    cabecalho();
 
-    printf("\n\nLista de colaboradores:\n\n");
+    printf("\nLista de colaboradores:\n\n");
     printf("---------------------------------------------------------------------------------------------------------------------\n");
     printf("%-7s%-35s%-15s%-12s%-15s%-20s%-14s\n", "Num", "Nome", "CPF", "Cep", "Telefone", "Cargo", "Ativo/Inativo");
 
@@ -119,6 +121,7 @@ int fCadastrar(Funcionarios **f, int quant)
     Funcionarios *novo = malloc(sizeof(Funcionarios));
 
     system("cls");
+    cabecalho();
 
     novo->fCod = quant + 1;
 
@@ -234,8 +237,8 @@ void fAtualizar(Funcionarios **f, int quant)
 
         novo = f[id];
 
-        printf("\tO que deseja alterar ?\t\n");
-        printf("[1]Nome\n[2]Senha\n[3]Departamento\n[4]CPF\n[5]CEP\n[6]Telefone\n[7]Cargo\n[8]Salario\n");
+        printf("\n O que deseja alterar ?\n\n");
+        printf("\n [1]Nome\n [2]Senha\n [3]Departamento\n [4]CPF\n [5]CEP\n [6]Telefone\n [7]Cargo\n [8]Salario\n Opção: ");
         scanf("%i", &escolhaatt);
         getchar();
 
@@ -367,9 +370,10 @@ void fRelatorio(Funcionarios **f, int quant)
 
     int id;
 
+    system("cls");
     consultarFuncionarios(f, quant);
 
-    printf("\n\nDigite o ID do funcionário: ");
+    printf("\n Digite o ID do funcionário: ");
     scanf("%i", &id);
     getchar();
     id--;
@@ -387,7 +391,6 @@ void fRelatorio(Funcionarios **f, int quant)
         char charsalario[9];
 
         file = fopen(nome_arquivo, "w");
-
 
         fprintf(file,novo->fNome);
         fprintf(file,"\n\nNome.......................: ");
@@ -432,14 +435,13 @@ void telaFuncionarios()
         salvarCadastro(lista, quant);
 
         system("cls");
-        printf("----------------------------\n");
-        printf("    FUNCIONARIOS\n");
-        printf("----------------------------\n");
-        printf("[0]Sair\n[1]Cadastrar funcionario\n[2]Atualizar cadastro\n[3]Deletar cadastro\n[4]Consultar\n[5]Gerar Relatorio\n");
-        printf("----------------------------\n");
+        cabecalho();
 
+        printf("\n Funcionários\n\n");
 
-        printf("Digite uma opcao: ");
+        printf(" [0]Sair\n [1]Cadastrar\n [2]Atualizar\n [3]Deletar\n [4]Consultar\n [5]Gerar relatório\n");
+
+        printf("\n Opcão: ");
         scanf("%i", &fEscolha);
         getchar();
 

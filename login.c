@@ -32,27 +32,21 @@ void telaLogin(int parametro)
     cls();
     if(parametro == 0)
     {
-        printf("------------------------------------------------------------------------------------------------------------------------");
-        printf("		                                        Dados invalidos\n");
-        printf("		                                        Tente novamente!\n");
-        printf("------------------------------------------------------------------------------------------------------------------------\n\n");
+        cabecalhoErro();
     }
     else
     {
-        printf("------------------------------------------------------------------------------------------------------------------------");
-        printf("		                                        Login\n");
-        printf("                                                RCM Software Development\n");
-        printf("------------------------------------------------------------------------------------------------------------------------\n\n");
+        cabecalho();
     }
 
     char usuarioDigitado[20];
     char senhaDigitada[30];
 
-    printf("Usuario: ");
+    printf(" Usuario: ");
     scanf("%s", usuarioDigitado);
     getchar();
 
-    printf("Senha: ");
+    printf(" Senha: ");
     int i = 0;
     do
     {
@@ -103,13 +97,12 @@ void telaLogin(int parametro)
         if (strcmp(usuarioDb, usuarioDigitado) == 0 && strcmp(senhaDb, senhaDigitada) == 0)
         {
             cls();
-            printf("------------------------------------------------------------------------------------------------------------------------");
-            printf("		                                   Logado com sucesso!\n");
-            printf("		                                   Bem-vindo(a) %s\n", usuarioDb);
-            printf("------------------------------------------------------------------------------------------------------------------------\n\n");
+            printf("********************************************************************************************************************\n");
+            printf("\t\t\t\t\t\tLogado com sucesso!\n");
+            printf("\t\t\t\t\t\tBem-vindo(a) %s\n", usuarioDb);
+            printf("********************************************************************************************************************\n\n");
 
-            printf("Pressione a qualquer tecla para continuar!");
-            getch();
+            system("pause");
 
             fclose(login);
             menuPrincipal(usuarioDb, departamentoDb);

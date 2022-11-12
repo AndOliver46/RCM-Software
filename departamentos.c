@@ -6,9 +6,8 @@
 int cadastrarDepartamento(Departamento **vetor, int quant, int tam)
 {
     cls();
-    printf("----------------------------------------------------------------\n");
-    printf("		Cadastrar departamento\n");
-    printf("----------------------------------------------------------------\n");
+    cabecalho();
+    printf("\n Cadastrar departamento\n\n");
 
     if(quant < tam)
     {
@@ -19,7 +18,7 @@ int cadastrarDepartamento(Departamento **vetor, int quant, int tam)
         novo->dId = quant;
 
         //Função alfabetico, verifica se foram digitados somente caracteres a-z A-Z e se não excedeu o limite estabelecido de caracteres (20)
-        printf("Nome do novo departamento: ");
+        printf("Nome: ");
         strcpy(novo->dNome,alfabeticoLimite(19));
         strcpy(novo->dNome,maiusculo(novo->dNome));
 
@@ -49,6 +48,7 @@ int cadastrarDepartamento(Departamento **vetor, int quant, int tam)
 void consultarDepartamento(Departamento **vetor, int quant)
 {
     cls();
+    cabecalho();
 
     printf("\n----------------------------------------------------------------------------------------------------------------\t\n");
     //Mostrar rótulos e formato de colunas reservando espaços para cada dado
@@ -70,12 +70,10 @@ void deletarDepartamento(Departamento **vetor, int quant)
     //Mostra lista de departamentos para usuario identificar os Id's
     consultarDepartamento(vetor,quant);
 
-    printf("----------------------------------------------------------------\n");
-    printf("		Deletar registros\n");
-    printf("----------------------------------------------------------------\n");
+    printf("\n Deletar registros\n\n");
 
     int id;
-    printf("\nDigite o Id do deparamento que deseja desativar: ");
+    printf("\n Digite o Id do deparamento que deseja desativar: ");
     scanf("%d", &id);
     getchar();
     id -= 1001;
@@ -105,8 +103,9 @@ void relatorioDepartamento(Departamento **vetor, int quant)
     do
     {
         cls();
+        cabecalho();
 
-        printf("\n----------------------------------------------------------------------------------------------------------------\t\n");
+        printf("----------------------------------------------------------------------------------------------------------------\t\n");
         //Mostrar rótulos e formato de colunas reservando espaços para cada dado
         printf("%-7s%-20s%-15s%-10s%-13s\n", "Id", "Nome", "Funcionarios", "Status", "Data Cadastro");
 
@@ -116,9 +115,9 @@ void relatorioDepartamento(Departamento **vetor, int quant)
         {
             printf("%-7i%-20s%-15i%-10s%-13s\n", vetor[i]->dId+1001, vetor[i]->dNome, quantidadeDeFuncionarios(vetor[i]->dNome), vetor[i]->dStatus, vetor[i]->dDataCadastro);
         }
-        printf("\n----------------------------------------------------------------------------------------------------------------\t\n");
+        printf("\n----------------------------------------------------------------------------------------------------------------\t\n\n\n");
 
-        printf("Qual tipo de relatório deseja exportar?\n\n[0]Voltar\n[1]Relatório individual (TXT)\n[2]Relatório geral (TXT)\n[3]Relatório geral (Excel)\n\nOpção: ");
+        printf(" Qual tipo de relatório deseja exportar?\n\n [0]Voltar\n [1]Relatório individual (TXT)\n [2]Relatório geral (TXT)\n [3]Relatório geral (Excel)\n\n Opção: ");
         scanf("%d", &opcao);
         getchar();
 
@@ -131,7 +130,7 @@ void relatorioDepartamento(Departamento **vetor, int quant)
         case 1:
             ;
             int id;
-            printf("Digite o código do departamento desejado: ");
+            printf(" Digite o código do departamento desejado: ");
             scanf("%d", &id);
             getchar();
             id -= 1001;
@@ -294,11 +293,10 @@ void telaDepartamentos()
         //Sempre que houver retorno ao menu departamentos, há um salvamento dos dados
         salvarDepartamentos(vetorDepartamentos,quant);
 
-        printf("----------------------------------------------------------------\n");
-        printf("		Módulo departamentos!\n");
-        printf("----------------------------------------------------------------\n");
+        cabecalho();
+        printf("\n Departamentos\n");
 
-        printf("\n[0]Voltar\n[1]Cadastrar\n[2]Consultar\n[3]Desativar departamento\n[4]Relatórios\n\nOpção: ");
+        printf("\n [0]Voltar\n [1]Cadastrar\n [2]Consultar\n [3]Desativar\n [4]Relatórios\n\n Opção: ");
         scanf("%d", &opcao);
         getchar();
 
@@ -313,6 +311,7 @@ void telaDepartamentos()
             break;
         case 2:
             consultarDepartamento(vetorDepartamentos, quant);
+            getchar();
             break;
         case 3:
             deletarDepartamento(vetorDepartamentos,quant);

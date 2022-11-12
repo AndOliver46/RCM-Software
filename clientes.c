@@ -6,9 +6,8 @@ Cliente ctt;
 
 void consultarCliente()
 {
-    system("cls");
-    printf("\n----------------------------------------------------------------------------------------------------------------\t\n");
-
+    system ("cls");
+    cabecalho();
 
     int erro = 0;
 
@@ -26,7 +25,6 @@ void consultarCliente()
         scanf("%s",ddcpfcnpj);
         getchar();
 
-
         while (fread(&ctt, sizeof(Cliente),1,arquivo) == 1)
         {
             if (strcmp(ddcpfcnpj,ctt.cpfcnpj) == 0)
@@ -41,7 +39,6 @@ void consultarCliente()
                 printf("Telefone: %s\n", ctt.telefone);
                 printf("Status: %s\n", ctt.status);
                 getch();
-
             }
 
         }
@@ -49,12 +46,8 @@ void consultarCliente()
         {
             printf ("Cpf/Cnpj não encontrado\n");
         }
-
         fclose(arquivo);
-
-
     }
-    printf("\n----------------------------------------------------------------------------------------------------------------\t\n");
     system ("pause");
 }
 
@@ -63,6 +56,7 @@ void consultarCliente()
 void telacadastro()
 {
     system ("cls");
+    cabecalho();
 
     FILE *arquivo;
     arquivo = fopen("cadastro.txt", "a");
@@ -73,59 +67,73 @@ void telacadastro()
     }
     else
     {
+        printf("\n Cadastro de Cliente\n\n");
 
-
-        printf("\n--------Cadastro de Cliente--------\n\n\n");
-
+         do {
         fflush(stdin);
-        printf("Digite o código .............: ");
+        printf("Código: ");
         scanf("%40[^\n]",ctt.codigo);
         getchar();
+         }
+            while(numerico(ctt.codigo) != 1);
 
+        do {
         fflush(stdin);
-        printf("Digite o nome completo.......: ");
+        printf("Nome completo: ");
         scanf("%40[^\n]",ctt.nome);
         getchar();
+        }
+         while(alfabeto(ctt.nome) != 1);
 
-        printf("Digite o numero de cpf/cnpj..: ");
+
+
+            do {
+        fflush(stdin);
+        printf("CPF/CNPJ: ");
         scanf("%s", ctt.cpfcnpj);
         getchar();
+            }
+        while(numerico(ctt.cpfcnpj) != 1);
+
+
 
         fflush(stdin);
-        printf("Digite o endereço............: ");
+        printf("Endereço: ");
         scanf("%40[^\n]",ctt.endereco);
         getchar();
 
+        do{
         fflush(stdin);
-        printf("Digite o numero de telefone..: ");
+        printf("Numero de telefone: ");
         scanf("%s",ctt.telefone);
         getchar();
+        }
+        while(numerico(ctt.cpfcnpj) != 1);
+
 
         fflush(stdin);
-        printf("Digite o email...............: ");
+        printf("Email: ");
         scanf("%s",ctt.email);
         getchar();
 
         strcpy (ctt.status,"ativo");
 
-        printf("\n\nCadastro realizado com sucesso!\n\n");
+        printf("\n Cadastro realizado com sucesso!\n\n");
         system ("pause");
 
         fwrite(&ctt,sizeof(Cliente),1,arquivo);
 
         fclose(arquivo);
-
-
     }
 }
 
 void Catualizar()
 {
-    system("cls");
+    system ("cls");
+    cabecalho();
+
     char dadocpf[15];
     int opcao =0;
-
-
 
     FILE *arquivo;
     arquivo = fopen("cadastro.txt", "r");
@@ -274,6 +282,7 @@ void crelatorio()
 void Telaexclui()
 {
     system ("cls");
+    cabecalho();
 
     char dadocpf[15];
     int opcao =0;
@@ -335,17 +344,17 @@ void Telaexclui()
 
 void clientes()
 {
-    int opcao;
+    int opcao = 1;
 
-    while (opcao != 5)
+    while (opcao != 0)
     {
         system ("cls");
+        cabecalho();
 
-        printf("\tTela de Clientes");
-        printf("\n\nSelecione uma opção válida e tecle enter:");
-        printf("\n\n(1)Consulta\n(2)Cadastro\n(3)Excluir\n(4)Alterar\n(5)Relatório\n(6)Sair");
+        printf("\n Clientes");
+        printf("\n\n [0]Sair\n [1]Consulta\n [2]Cadastro\n [3]Excluir\n [4]Alterar\n [5]Gerar relatório\n");
 
-        printf("\n\nOpção:");
+        printf("\n Opção: ");
         scanf("%d",&opcao);
         getchar();
 

@@ -2,6 +2,7 @@
 #define AUXILIARES_H_INCLUDED
 
 void cabecalho();
+void cabecalhoErro();
 char* dataAtual();
 char* maiusculo(char textoRecebido[]);
 int numerico(char variavel[]);

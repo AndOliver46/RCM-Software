@@ -6,7 +6,8 @@ Cliente ctt;
 
 void consultarCliente()
 {
-    system ("cls");
+//computador   
+ system ("cls");
     cabecalho();
 
     int erro = 0;

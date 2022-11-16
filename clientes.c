@@ -69,30 +69,33 @@ void telacadastro()
     {
         printf("\n Cadastro de Cliente\n\n");
 
-         do {
-        fflush(stdin);
-        printf("Código: ");
-        scanf("%40[^\n]",ctt.codigo);
-        getchar();
-         }
-            while(numerico(ctt.codigo) != 1);
-
-        do {
-        fflush(stdin);
-        printf("Nome completo: ");
-        scanf("%40[^\n]",ctt.nome);
-        getchar();
+        do
+        {
+            fflush(stdin);
+            printf("Código: ");
+            scanf("%40[^\n]",ctt.codigo);
+            getchar();
         }
-         while(alfabeto(ctt.nome) != 1);
+        while(numerico(ctt.codigo) != 1);
+
+        do
+        {
+            fflush(stdin);
+            printf("Nome completo: ");
+            scanf("%40[^\n]",ctt.nome);
+            getchar();
+        }
+        while(alfabeto(ctt.nome) != 1);
 
 
 
-            do {
-        fflush(stdin);
-        printf("CPF/CNPJ: ");
-        scanf("%s", ctt.cpfcnpj);
-        getchar();
-            }
+        do
+        {
+            fflush(stdin);
+            printf("CPF/CNPJ: ");
+            scanf("%s", ctt.cpfcnpj);
+            getchar();
+        }
         while(numerico(ctt.cpfcnpj) != 1);
 
 
@@ -102,11 +105,12 @@ void telacadastro()
         scanf("%40[^\n]",ctt.endereco);
         getchar();
 
-        do{
-        fflush(stdin);
-        printf("Numero de telefone: ");
-        scanf("%s",ctt.telefone);
-        getchar();
+        do
+        {
+            fflush(stdin);
+            printf("Numero de telefone: ");
+            scanf("%s",ctt.telefone);
+            getchar();
         }
         while(numerico(ctt.cpfcnpj) != 1);
 
@@ -293,43 +297,51 @@ void Telaexclui()
     FILE *arqTem;
     arqTem = fopen ("temp.txt","w");
 
-    printf("Digite o cpf/cnpj: ");
-    scanf("%s", dadocpf);
-    getchar();
-
-    while (fread(&ctt, sizeof(Cliente),1, arquivo) == 1)
+    if (arquivo == NULL)
     {
-        if (strcmp(dadocpf,ctt.cpfcnpj)==0)
+        printf("Arquivo não encontrado!");
+    }
+    else
+    {
+
+        printf("Digite o cpf/cnpj: ");
+        scanf("%s", dadocpf);
+        getchar();
+
+
+        while (fread(&ctt, sizeof(Cliente),1, arquivo) == 1)
         {
-            printf("\n\n**********************\n");
-            printf("Código: %s\n", ctt.codigo);
-            printf("Nome: %s\n", ctt.nome);
-            printf("Cpf/Cnpj: %s\n", ctt.cpfcnpj);
-            printf("Endereçoo: %s\n", ctt.endereco);
-            printf("Email: %s\n",ctt.email);
-            printf("Telefone: %s\n", ctt.telefone);
-            printf("Status: %s",ctt.status);
 
-            printf("\n\nVocê tem certeza que deseja inativar esse clente? (1-Sim / 2-Não) ");
-            scanf("%d", &opcao);
-            getchar();
-
-
-
-            if (opcao == 2)
+            if(strcmp(dadocpf,ctt.cpfcnpj)==0)
             {
-                fwrite(&ctt, sizeof(Cliente),1,arqTem);
-                printf("OPERAÇÃO CANCELADA!");
-            }
-            else
-            {
-                strcpy (ctt.status,"inativo");
-                fwrite(&ctt, sizeof(Cliente),1,arqTem);
-                printf("\nCADASTRO INATIVADO COM SUCESSO!\n");
-            }
+                printf("\n\n**********************\n");
+                printf("Código: %s\n", ctt.codigo);
+                printf("Nome: %s\n", ctt.nome);
+                printf("Cpf/Cnpj: %s\n", ctt.cpfcnpj);
+                printf("Endereçoo: %s\n", ctt.endereco);
+                printf("Email: %s\n",ctt.email);
+                printf("Telefone: %s\n", ctt.telefone);
+                printf("Status: %s",ctt.status);
 
+                printf("\n\nVocê tem certeza que deseja inativar esse clente? (1-Sim / 2-Não) ");
+                scanf("%d", &opcao);
+                getchar();
+
+
+                if (opcao == 2)
+                {
+                    fwrite(&ctt, sizeof(Cliente),1,arqTem);
+                    printf("Operação cancelada!");
+                }
+                else
+                {
+                    strcpy (ctt.status,"inativo");
+                    fwrite(&ctt, sizeof(Cliente),1,arqTem);
+                    printf("\nCadastro inativado com sucesso!\n");
+                }
+
+            }
         }
-
 
     }
     fclose(arquivo);

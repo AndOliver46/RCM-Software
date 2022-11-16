@@ -119,3 +119,79 @@
 	"clientes.h"
 	"auxiliares.h"
 
+1668535645 source:c:\users\wagne\onedrive\햞ea de trabalho\git\auxiliares.c
+	"bibliotecas.h"
+	"auxiliares.h"
+
+1668535645 c:\users\wagne\onedrive\햞ea de trabalho\git\bibliotecas.h
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<time.h>
+
+1668535645 c:\users\wagne\onedrive\햞ea de trabalho\git\auxiliares.h
+
+1668538095 source:c:\users\wagne\onedrive\햞ea de trabalho\git\clientes.c
+	"bibliotecas.h"
+	"auxiliares.h"
+	"clientes.h"
+
+1668535645 c:\users\wagne\onedrive\햞ea de trabalho\git\clientes.h
+
+1668535645 source:c:\users\wagne\onedrive\햞ea de trabalho\git\departamentos.c
+	"bibliotecas.h"
+	"departamentos.h"
+	"auxiliares.h"
+	"funcionarios.h"
+
+1668535645 c:\users\wagne\onedrive\햞ea de trabalho\git\departamentos.h
+
+1668535645 c:\users\wagne\onedrive\햞ea de trabalho\git\funcionarios.h
+
+1668535645 source:c:\users\wagne\onedrive\햞ea de trabalho\git\fornecedores.c
+	"bibliotecas.h"
+	"fornecedores.h"
+
+1668535645 c:\users\wagne\onedrive\햞ea de trabalho\git\fornecedores.h
+
+1668535645 source:c:\users\wagne\onedrive\햞ea de trabalho\git\funcionarios.c
+	"bibliotecas.h"
+	"funcionarios.h"
+	"departamentos.h"
+	"auxiliares.h"
+
+1668535645 source:c:\users\wagne\onedrive\햞ea de trabalho\git\login.c
+	"bibliotecas.h"
+	"login.h"
+	"menuprincipal.h"
+	"auxiliares.h"
+
+1668535645 c:\users\wagne\onedrive\햞ea de trabalho\git\login.h
+
+1668535645 c:\users\wagne\onedrive\햞ea de trabalho\git\menuprincipal.h
+
+1668535645 source:c:\users\wagne\onedrive\햞ea de trabalho\git\main.c
+	"bibliotecas.h"
+	"login.h"
+
+1668535645 source:c:\users\wagne\onedrive\햞ea de trabalho\git\menuprincipal.c
+	"bibliotecas.h"
+	"menuprincipal.h"
+	"auxiliares.h"
+	"funcionarios.h"
+	"clientes.h"
+	"fornecedores.h"
+	"departamentos.h"
+	"projetos.h"
+
+1668535645 c:\users\wagne\onedrive\햞ea de trabalho\git\projetos.h
+
+1668535645 source:c:\users\wagne\onedrive\햞ea de trabalho\git\projetos.c
+	"bibliotecas.h"
+	"projetos.h"
+	"clientes.h"
+	"auxiliares.h"
+

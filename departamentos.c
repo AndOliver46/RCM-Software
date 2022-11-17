@@ -51,16 +51,14 @@ void consultarDepartamento(Departamento **vetor, int quant)
     cabecalho();
 
     printf("\n----------------------------------------------------------------------------------------------------------------\t\n");
-    //Mostrar rótulos e formato de colunas reservando espaços para cada dado
-    printf("%-7s%-20s%-15s%-10s%-13s\n", "Id", "Nome", "Funcionarios","Status", "Data Cadastro");
+    printf("%-7s%-20s%-15s%-15s%-10s%-13s\n", "Id", "Nome", "Funcionarios", "Folha","Status", "Data Cadastro");
 
-    //Loop para percorrer toda a struct de departamentos mostrando cada um em uma linha
     int i;
     for (i=0; i < quant; i++)
     {
-        printf("%-7i%-20s%-15i%-10s%-13s\n", vetor[i]->dId+1001, vetor[i]->dNome, quantidadeDeFuncionarios(vetor[i]->dNome),vetor[i]->dStatus, vetor[i]->dDataCadastro);
+        printf("%-7i%-20s%-15iR$ %-12.2f%-10s%-13s\n", vetor[i]->dId+1001, vetor[i]->dNome, quantidadeDeFuncionarios(vetor[i]->dNome), custoDepartamento(vetor[i]->dNome), vetor[i]->dStatus, vetor[i]->dDataCadastro);
     }
-    printf("\n----------------------------------------------------------------------------------------------------------------\t\n");
+    printf("\n----------------------------------------------------------------------------------------------------------------\t\n\n\n");
 }
 
 void deletarDepartamento(Departamento **vetor, int quant)
@@ -102,20 +100,7 @@ void relatorioDepartamento(Departamento **vetor, int quant)
 
     do
     {
-        cls();
-        cabecalho();
-
-        printf("----------------------------------------------------------------------------------------------------------------\t\n");
-        //Mostrar rótulos e formato de colunas reservando espaços para cada dado
-        printf("%-7s%-20s%-15s%-10s%-13s\n", "Id", "Nome", "Funcionarios", "Status", "Data Cadastro");
-
-        //Loop para percorrer toda a struct de departamentos mostrando cada um em uma linha
-        int i;
-        for (i=0; i < quant; i++)
-        {
-            printf("%-7i%-20s%-15i%-10s%-13s\n", vetor[i]->dId+1001, vetor[i]->dNome, quantidadeDeFuncionarios(vetor[i]->dNome), vetor[i]->dStatus, vetor[i]->dDataCadastro);
-        }
-        printf("\n----------------------------------------------------------------------------------------------------------------\t\n\n\n");
+        consultarDepartamento(vetor, quant);
 
         printf(" Qual tipo de relatório deseja exportar?\n\n [0]Voltar\n [1]Relatório individual (TXT)\n [2]Relatório geral (TXT)\n [3]Relatório geral (Excel)\n\n Opção: ");
         scanf("%d", &opcao);
@@ -135,52 +120,56 @@ void relatorioDepartamento(Departamento **vetor, int quant)
             getchar();
             id -= 1001;
 
-            FILE *file = fopen("Relatorio individual - Departamentos.txt", "w");
+            FILE *file = fopen("RelatorioIndividualDepartamento.txt", "w");
             fprintf(file, "Código do departamento: %d\n", vetor[id]->dId+1001);
             fprintf(file, "Nome..................: %s\n", vetor[id]->dNome);
             fprintf(file, "Funcionarios..........: %i\n", quantidadeDeFuncionarios(vetor[id]->dNome));
+            fprintf(file, "Folha de pagamento....: R$ %.2f\n", custoDepartamento(vetor[id]->dNome));
             fprintf(file, "Status................: %s\n", vetor[id]->dStatus);
             fprintf(file, "Data de cadastro......: %s\n", vetor[id]->dDataCadastro);
 
-            printf("Relatório gerado com sucesso!");
+            printf("\nRelatório gerado com sucesso!");
             fclose(file);
             getch();
             cls();
+            system("start RelatorioIndividualDepartamento.txt");
 
             break;
         case 2:
             ;
-            FILE *txtFile = fopen("Relatorio geral - Departamentos.txt", "w");
-            fprintf(txtFile, "%-7s%-20s%-15s%-10s%-13s\n", "Id", "Nome", "Funcionarios", "Status", "Data Cadastro");
+            FILE *txtFile = fopen("RelatorioGeralDepartamentos.txt", "w");
+            fprintf(txtFile, "%-7s%-20s%-15s%-15s%-10s%-13s\n", "Id", "Nome", "Funcionarios", "Folha", "Status", "Data Cadastro");
 
-            //Loop para percorrer toda a struct de departamentos mostrando cada um em uma linha
             int i;
             for (i=0; i < quant; i++)
             {
-                fprintf(txtFile, "%-7i%-20s%-15i%-10s%-13s\n", vetor[i]->dId+1001, vetor[i]->dNome, quantidadeDeFuncionarios(vetor[i]->dNome), vetor[i]->dStatus, vetor[i]->dDataCadastro);
+                fprintf(txtFile, "%-7i%-20s%-15iR$ %-12.2f%-10s%-13s\n", vetor[i]->dId+1001, vetor[i]->dNome, quantidadeDeFuncionarios(vetor[i]->dNome), custoDepartamento(vetor[i]->dNome), vetor[i]->dStatus, vetor[i]->dDataCadastro);
             }
 
             printf("Relatório gerado com sucesso!");
             fclose(txtFile);
             getch();
             cls();
+            system("start RelatorioGeralDepartamentos.txt");
+
             break;
         case 3:
             ;
-            FILE *csvFile = fopen("Relatorio geral - Departamentos.csv", "w");
-            fprintf(csvFile, "%-7s;%-20s;%-15s;%-10s;%-13s;\n", "Id", "Nome", "Funcionarios", "Status", "Data Cadastro");
+            FILE *csvFile = fopen("RelatorioGeralDepartamentos.csv", "w");
+            fprintf(csvFile, "%-7s;%-20s;%-15s;%-15s;%-10s;%-13s;\n", "Id", "Nome", "Funcionarios", "Folha", "Status", "Data Cadastro");
 
-            //Loop para percorrer toda a struct de departamentos mostrando cada um em uma linha
             int j;
             for (j=0; j < quant; j++)
             {
-                fprintf(csvFile, "%-7i;%-20s;%-15i;%-10s;%-13s;\n", vetor[j]->dId+1001, vetor[j]->dNome, quantidadeDeFuncionarios(vetor[j]->dNome), vetor[j]->dStatus, vetor[j]->dDataCadastro);
+                fprintf(csvFile, "%-7i;%-20s;%-15i;R$ %-12.2f;%-10s;%-13s;\n", vetor[j]->dId+1001, vetor[j]->dNome, quantidadeDeFuncionarios(vetor[j]->dNome), custoDepartamento(vetor[j]->dNome), vetor[j]->dStatus, vetor[j]->dDataCadastro);
             }
 
             printf("Relatório gerado com sucesso!");
             fclose(csvFile);
             getch();
             cls();
+            system("start RelatorioGeralDepartamentos.csv");
+
             break;
         default:
             printf("\nOpção inválida!\n");
@@ -203,6 +192,21 @@ int quantidadeDeFuncionarios(char departamento[]){
     }
 
     return count;
+}
+
+float custoDepartamento(char departamento[]){
+    Funcionarios *lista[1000];
+    int quantTotal = lerArquivo(lista);
+    float custo = 0;
+
+    int i;
+    for(i = 0; i < quantTotal; i++){
+        if(strcmp(lista[i]->fpermi,departamento) == 0){
+            custo += lista[i]->fsalario;
+        }
+    }
+
+    return custo;
 }
 
 void salvarDepartamentos(Departamento **vetor, int quant)

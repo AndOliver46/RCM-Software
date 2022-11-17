@@ -12,6 +12,7 @@ void consultarDepartamento(Departamento **vetor, int quant);
 void deletarDepartamento(Departamento **vetor, int quant);
 void relatorioDepartamento(Departamento **vetor, int quant);
 int quantidadeDeFuncionarios(char departamento[]);
+float custoDepartamento(char departamento[]);
 void salvarDepartamentos(Departamento **vetor, int quant);
 int lerDepartamentos(Departamento **vetor);
 void telaDepartamentos();

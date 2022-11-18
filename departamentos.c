@@ -80,14 +80,19 @@ void deletarDepartamento(Departamento **vetor, int quant)
 
     if(id >= 0 && id < quant)
     {
-        strcpy(vetor[id]->dStatus,"Inativo");
+        if(quantidadeDeFuncionarios(vetor[id]->dNome) != 0){
+            printf("\n Não é possível desativar um departamento com funcionários!\n");
+            getch();
+        }else{
+            strcpy(vetor[id]->dStatus,"Inativo");
 
-        printf("\nDepartamento desativado com sucesso!\n");
-        getch();
+            printf("\n Departamento desativado com sucesso!\n");
+            getch();
+        }
     }
     else
     {
-        printf("\nCódigo inválido!\n");
+        printf("\n Código inválido!\n");
         getch();
     }
 

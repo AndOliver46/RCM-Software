@@ -3,7 +3,7 @@
 
 typedef struct
 {
-    char flogin[50], fNome[50], fSenha[30], fAtivoInativo[8],fpermi[10], fCpf[12], fCep[12], fTelefone[12], fCargo[30], fDataCadastro[11];
+    char flogin[50], fNome[50], fSenha[50], fAtivoInativo[8],fpermi[10], fCpf[12], fCep[12], fTelefone[12], fCargo[30], fDataCadastro[11];
     int fCod;
     float fsalario;
 } Funcionarios;

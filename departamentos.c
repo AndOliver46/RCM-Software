@@ -11,28 +11,32 @@ int cadastrarDepartamento(Departamento **vetor, int quant, int tam)
 
     if(quant < tam)
     {
-        //Aloca dinamicamente a memória necessária para armazenar uma struct do tipo Departamento na variável novo
         Departamento *novo = malloc(sizeof(Departamento));
 
-        //Define que o Id do novo departamento vai ser o valor da quantidade de elementos na lista
         novo->dId = quant;
 
-        //Função alfabetico, verifica se foram digitados somente caracteres a-z A-Z e se não excedeu o limite estabelecido de caracteres (20)
         printf("Nome: ");
         strcpy(novo->dNome,alfabeticoLimite(19));
         strcpy(novo->dNome,maiusculo(novo->dNome));
 
-        //Define o departamento cadastrado como ativo
         strcpy(novo->dStatus,"Ativo");
-
-        //Cria a data de cadastro a partir da variável global dataSistema
         strcpy(novo->dDataCadastro,dataAtual());
 
-        //Insere a struct criada através dos dados inseridos no vetor de Structs passado como argumento
         vetor[quant] = novo;
 
         cls();
-        printf("Departamento cadastrado com sucesso!\n\n");
+        cabecalho();
+        printf("\n Informações do novo departamento:\n\n");
+
+        printf(" Código do departamento: %d\n", vetor[quant]->dId+1001);
+        printf(" Nome..................: %s\n", vetor[quant]->dNome);
+        printf(" Funcionarios..........: %i\n", quantidadeDeFuncionarios(vetor[quant]->dNome));
+        printf(" Folha de pagamento....: R$ %.2f\n", custoDepartamento(vetor[quant]->dNome));
+        printf(" Status................: %s\n", vetor[quant]->dStatus);
+        printf(" Data de cadastro......: %s\n", vetor[quant]->dDataCadastro);
+
+        printf("\n Departamento cadastrado com sucesso!");
+        getch();
 
         return 1;
     }
@@ -64,8 +68,6 @@ void consultarDepartamento(Departamento **vetor, int quant)
 void deletarDepartamento(Departamento **vetor, int quant)
 {
     cls();
-
-    //Mostra lista de departamentos para usuario identificar os Id's
     consultarDepartamento(vetor,quant);
 
     printf("\n Deletar registros\n\n");
@@ -76,10 +78,8 @@ void deletarDepartamento(Departamento **vetor, int quant)
     getchar();
     id -= 1001;
 
-    //Verifica se o id existe, se existir altera o departamento para Inativo
     if(id >= 0 && id < quant)
     {
-        //Alterando dado dStatus do departamento "id" para Inativo
         strcpy(vetor[id]->dStatus,"Inativo");
 
         printf("\nDepartamento desativado com sucesso!\n");
@@ -211,19 +211,19 @@ float custoDepartamento(char departamento[]){
 
 void salvarDepartamentos(Departamento **vetor, int quant)
 {
-    //Abertura de arquivo em modo write
     FILE *file = fopen("dbdepartamentos.txt", "w");
     int i;
 
     if(file != NULL)
     {
-        //Armazenar a quantidade de funcionarios na primeira linha do arquivo, para auxiliar na leitura posterior
         fprintf(file, "%d\n", quant);
 
         for(i=0; i < quant; i++)
         {
-            //Inserir dados de cada struct que está dentro do vetor no arquivo, com a formatação separada por virgulas
-            fprintf(file,"%i,%s,%s,%s,%i,\n", vetor[i]->dId, vetor[i]->dNome, vetor[i]->dStatus, vetor[i]->dDataCadastro, quantidadeDeFuncionarios(vetor[i]->dNome));
+            fprintf(file,"%i,", vetor[i]->dId);
+            fprintf(file,"%s,", vetor[i]->dNome);
+            fprintf(file,"%s,", vetor[i]->dStatus);
+            fprintf(file,"%s,\n", vetor[i]->dDataCadastro);
         }
         fclose(file);
     }
@@ -236,24 +236,19 @@ void salvarDepartamentos(Departamento **vetor, int quant)
 
 int lerDepartamentos(Departamento **vetor)
 {
-    //Abertura do arquivo em modo read
     FILE *file = fopen("dbdepartamentos.txt", "r");
     int quant = 0, i;
 
-    //Aloca dinamicamente a memória necessária para armazenar uma struct do tipo Departamento na variável novo
     Departamento *novo = malloc(sizeof(Departamento));
 
-    //Variavel preparada para receber conteúdo da linha recebida do arquivo pela função fgets abaixo
     char linha[256];
 
     if(file != NULL)
     {
-        //Busca quantidade de funcionarios salvos no txt e joga na variavel quantidade
         fscanf(file, "%d\n", &quant);
 
         for(i=0; i < quant; i++)
         {
-            //Função para jogar conteúdo da linha dentro da variável linha
             fgets(linha, 256, file);
 
             novo->dId = atoi(strtok(linha, ","));
@@ -261,11 +256,7 @@ int lerDepartamentos(Departamento **vetor)
             strcpy(novo->dStatus,strtok(NULL, ","));
             strcpy(novo->dDataCadastro,strtok(NULL, ","));
 
-
-            //Salva novo departamento no vetor de departamentos na posição i
             vetor[i] = novo;
-
-            //Realoca espaço na memória para receber os dados no próximo loop
             novo = malloc(sizeof(Departamento));
         }
         fclose(file);
@@ -282,19 +273,14 @@ int lerDepartamentos(Departamento **vetor)
 
 void telaDepartamentos()
 {
-    //Cria um vetor do tipo Departamento para inserção das structs e manipulação dos dados dos departamentos.
     Departamento *vetorDepartamentos[100];
 
-    //tam: Define quantos departamentos podem ser cadastrados para que não exceda o limite
-    //quant: Define um valor inicial para a quantidade de departamentos cadastrados
     int opcao, tam = 100, quant = 0;
 
-    //Ao início da função, busca os departamentos cadastrados no TXT e altera a quantidade incial de acordo com quandos departamentos existem no arquivo
     quant += lerDepartamentos(vetorDepartamentos);
 
     do
     {
-        //Sempre que houver retorno ao menu departamentos, há um salvamento dos dados
         salvarDepartamentos(vetorDepartamentos,quant);
 
         cabecalho();
@@ -310,11 +296,11 @@ void telaDepartamentos()
             return;
             break;
         case 1:
-            //Passa o vetor de departamentos como parametro para ser cadastrado o novo departamento, a função retorna 1 (cadastrado) / 0 (Erro)
             quant += cadastrarDepartamento(vetorDepartamentos, quant, tam);
             break;
         case 2:
             consultarDepartamento(vetorDepartamentos, quant);
+            printf("Pressione qualquer tecla para retornar...");
             getchar();
             break;
         case 3:

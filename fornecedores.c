@@ -331,33 +331,28 @@ void relatorio()
     cabecalho();
 
     FILE *cadforn;
+    FILE *relforn;
 
     cadforn = fopen("cad_fornecedor.txt", "rb");
+    relforn = fopen("Lista_Fornecedores.csv","w");
 
-    if(cadforn == NULL)
+    if(cadforn == NULL && relforn == NULL)
     {
         printf("ERRO NA ABERTURA DO ARQUIVO.\n");
-
-
     }
     else
     {
+        fprintf(relforn,"CODIGO;RAZAO SOCIAL;CNPJ;TELEFONE;LOGRADOURO;NUMERO;BAIRRO;CIDADE;UF;STATUS\n");
         while(fread(&forn, sizeof(Cadastro),1,cadforn) == 1)
         {
-            printf("\n\n****************************************************************\n");
-            printf("Código: %s\n", forn.codigo);
-            printf("Razão Social: %s\n", forn.nome);
-            printf("CNPJ: %s\n", forn.cpf);
-            printf("Telefone: %s\n", forn.fone);
-            printf("Endereço: %s\n", forn.rua);
-            printf("Número: %s\n", forn.numero);
-            printf("Bairro: %s\n", forn.bairro);
-            printf("Cidade: %s\n", forn.cidade);
-            printf("Estado: %s\n\n", forn.uf);
-            printf("Status: %s\n\n", forn.status);
+            fprintf(relforn,"%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n",forn.codigo,forn.nome,forn.cpf,forn.fone,forn.rua,
+                    forn.numero,forn.bairro,forn.cidade,forn.uf,forn.status);
         }
+        printf("GERANDO O RELATORIO EM MS-EXCEL");
     }
     fclose(cadforn);
+    fclose(relforn);
+    system("start Lista_Fornecedores.csv");
 
     getch();
 }
@@ -485,7 +480,7 @@ void relatorioMenu()
         printf(" [0]Voltar\n");
         printf(" [1]Ativos\n");
         printf(" [2]Inativos\n");
-        printf(" [3]Total\n\n");
+        printf(" [3]Total em Excel\n\n");
 
         printf(" Opção: ");
         scanf("%d",&opcao);

@@ -144,7 +144,14 @@ char* encriptarValor(char textoRecebido[])
     int i;
     for(i = 0; i < tamanho; i++)
     {
-        textoEncriptado[i] = textoRecebido[i] - CHAVE;
+        if(textoRecebido[i] == '9')
+        {
+            textoEncriptado[i] = textoRecebido[i] + CHAVE + 1;
+        }
+        else
+        {
+            textoEncriptado[i] = textoRecebido[i] + CHAVE;
+        }
     }
     return textoEncriptado;
 }
@@ -157,7 +164,14 @@ char* decriptarValor(char textoRecebido[])
     int i;
     for(i = 0; i < tamanho; i++)
     {
-        textoDecriptado[i] = textoRecebido[i] - CHAVE;
+        if(textoRecebido[i] == '<')
+        {
+            textoDecriptado[i] = textoRecebido[i] - CHAVE - 1;
+        }
+        else
+        {
+            textoDecriptado[i] = textoRecebido[i] - CHAVE;
+        }
     }
     return textoDecriptado;
 }

@@ -80,10 +80,13 @@ void deletarDepartamento(Departamento **vetor, int quant)
 
     if(id >= 0 && id < quant)
     {
-        if(quantidadeDeFuncionarios(vetor[id]->dNome) != 0){
+        if(quantidadeDeFuncionarios(vetor[id]->dNome) != 0)
+        {
             printf("\n Não é possível desativar um departamento com funcionários!\n");
             getch();
-        }else{
+        }
+        else
+        {
             strcpy(vetor[id]->dStatus,"Inativo");
 
             printf("\n Departamento desativado com sucesso!\n");
@@ -184,14 +187,17 @@ void relatorioDepartamento(Departamento **vetor, int quant)
     while(opcao == 0);
 }
 
-int quantidadeDeFuncionarios(char departamento[]){
+int quantidadeDeFuncionarios(char departamento[])
+{
     Funcionarios *lista[1000];
     int quantTotal = lerArquivo(lista);
     int count = 0;
 
     int i;
-    for(i = 0; i < quantTotal; i++){
-        if(strcmp(lista[i]->fpermi,departamento) == 0){
+    for(i = 0; i < quantTotal; i++)
+    {
+        if(strcmp(lista[i]->fpermi,departamento) == 0 && strcmp(lista[i]->fAtivoInativo,"Ativo") == 0)
+        {
             count++;
         }
     }
@@ -199,14 +205,17 @@ int quantidadeDeFuncionarios(char departamento[]){
     return count;
 }
 
-float custoDepartamento(char departamento[]){
+float custoDepartamento(char departamento[])
+{
     Funcionarios *lista[1000];
     int quantTotal = lerArquivo(lista);
     float custo = 0;
 
     int i;
-    for(i = 0; i < quantTotal; i++){
-        if(strcmp(lista[i]->fpermi,departamento) == 0){
+    for(i = 0; i < quantTotal; i++)
+    {
+        if(strcmp(lista[i]->fpermi,departamento) == 0)
+        {
             custo += lista[i]->fsalario;
         }
     }

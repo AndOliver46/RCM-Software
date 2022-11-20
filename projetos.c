@@ -417,17 +417,27 @@ void chamaCliente()
     {
         if (strcmp(ddcpfcnpj,ctt.cpfcnpj) == 0)
         {
-            sprintf(proj.cliente,"%s",ctt.nome);
-            sprintf(proj.cpf,"%s", ctt.cpfcnpj);
-            fclose(arquivo);
-            cadProjeto();
-            break;
+            if(strcmp(ctt.status,"ativo")==0)
+            {
+                sprintf(proj.cliente,"%s",ctt.nome);
+                sprintf(proj.cpf,"%s", ctt.cpfcnpj);
+                fclose(arquivo);
+                cadProjeto();
+                goto fim;
+                break;
+            }
+            else
+            {
+                printf("\nCADASTRO INATIVO!");
+                getch();
+                goto fim;
+                break;
+            }
         }
-
     }
     printf(" CLIENTE NAO CADASTRADO!");
     getch();
-
+    fim:
     fclose(arquivo);
 }
 void telaAtualiza()

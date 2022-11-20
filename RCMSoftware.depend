@@ -261,9 +261,13 @@
 
 1667339939 c:\users\ntb\documents\maurício\linguagem c\rcm\rcm-software\projetos.h
 
-1668623457 source:c:\users\ntb\documents\maurício\linguagem c\rcm\rcm-software\projetos.c
+1668906478 source:c:\users\ntb\documents\maurício\linguagem c\rcm\rcm-software\projetos.c
 	"bibliotecas.h"
 	"projetos.h"
 	"clientes.h"
 	"auxiliares.h"
+
+1668706590 source:c:\users\ntb\documents\maurício\linguagem c\rcm\rcm-software\fornecedores.c
+	"bibliotecas.h"
+	"fornecedores.h"
 

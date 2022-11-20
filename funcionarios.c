@@ -47,16 +47,17 @@ int lerArquivo(Funcionarios **f)
             fgets(linha, 1000, file);
             novo->fCod = atoi(strtok(linha,";"));
             strcpy(novo->fNome,strtok(NULL, ";"));
-            strcpy(novo->flogin,strtok(NULL, ";"));
-            strcpy(novo->fSenha,strtok(NULL, ";"));
+            strcpy(novo->flogin,decriptarValor(strtok(NULL, ";")));
+            strcpy(novo->fSenha,decriptarValor(strtok(NULL, ";")));
             strcpy(novo->fAtivoInativo,strtok(NULL, ";"));
             strcpy(novo->fpermi,strtok(NULL, ";"));
-            strcpy(novo->fCpf,strtok(NULL, ";"));
+            strcpy(novo->fCpf,decriptarValor(strtok(NULL, ";")));
             strcpy(novo->fCep,strtok(NULL, ";"));
             strcpy(novo->fTelefone,strtok(NULL, ";"));
             strcpy(novo->fCargo,strtok(NULL, ";"));
             novo->fsalario = atoi(strtok(NULL,";"));
             strcpy(novo->fDataCadastro,strtok(NULL, ";"));
+
             f[i] = novo;
             novo = malloc(sizeof(Funcionarios));
         }
@@ -66,8 +67,6 @@ int lerArquivo(Funcionarios **f)
     {
         printf("Arquivo nao encontrado.");
     }
-
-
 
     return quant;
 }
@@ -356,7 +355,18 @@ void salvarCadastro(Funcionarios **f, int quant)
     fprintf(file, "%d\n", quant);
     for(i=0; i < quant; i++)
     {
-        fprintf(file, "%i;%s;%s;%s;%s;%s;%s;%s;%s;%s;%.2f;%s;\n", f[i]->fCod, f[i]->fNome, f[i]->flogin, f[i]->fSenha, f[i]->fAtivoInativo,f[i]->fpermi, f[i]->fCpf, f[i]->fCep, f[i]->fTelefone, f[i]->fCargo, f[i]->fsalario, f[i]->fDataCadastro);
+        fprintf(file, "%i;", f[i]->fCod);
+        fprintf(file, "%s;",f[i]->fNome);
+        fprintf(file, "%s;",encriptarValor(f[i]->flogin));
+        fprintf(file, "%s;",encriptarValor(f[i]->fSenha));
+        fprintf(file, "%s;",f[i]->fAtivoInativo);
+        fprintf(file, "%s;",f[i]->fpermi);
+        fprintf(file, "%s;",encriptarValor(f[i]->fCpf));
+        fprintf(file, "%s;",f[i]->fCep);
+        fprintf(file, "%s;",f[i]->fTelefone);
+        fprintf(file, "%s;",f[i]->fCargo);
+        fprintf(file, "%.2f;",f[i]->fsalario);
+        fprintf(file, "%s;\n",f[i]->fDataCadastro);
     }
     fclose(file);
 }

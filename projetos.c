@@ -79,7 +79,7 @@ void cadProjeto()
         scanf("%30[^\n]",proj.titulo);
         getchar();
 
-        printf("Linguagem.....: ");
+        printf("Linguagem: ");
         scanf("%25[^\n]",proj.linguagem);
         getchar();
 
@@ -96,15 +96,15 @@ void cadProjeto()
             strcpy(proj.status,"EM PROCESSO");
         }
 
-        printf("Data de Inicio......: ");
+        printf("Data de Inicio: ");
         scanf("%d/%d/%d",&proj.inicio[0],&proj.inicio[1],&proj.inicio[2]);
         getchar();
 
-        printf("Previsao de Entrega.: ");
+        printf("Previsao de Entrega: ");
         scanf("%d/%d/%d",&proj.previsao[0],&proj.previsao[1],&proj.previsao[2]);
         getchar();
 
-        printf("Valor do Projeto....: ");
+        printf("Valor do Projeto: ");
         scanf("%f",&proj.valor);
         getchar();
 
@@ -139,7 +139,7 @@ void cadProjeto()
         }
 
 
-        printf("Descricao do Projeto.: ");
+        printf("Descricao do Projeto: ");
         scanf("%120[^\n]",proj.descricao);
         getchar();
 

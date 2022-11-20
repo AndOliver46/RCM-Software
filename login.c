@@ -5,26 +5,25 @@
 
 void telaLogin(int parametro)
 {
-    //***Início do login, a verificação do usuário na base de dados***
-    FILE *file = fopen("dbfuncionarios.txt", "r"); //Abertura de base de dados de colaboradores para verificação se existe o usuário e senha informada
-    if(file == NULL)//Verificar se o arquivo foi aberto com sucesso, se não, finalizar programa
+    FILE *file = fopen("dbfuncionarios.txt", "r");
+    if(file == NULL)
     {
         FILE *file = fopen("dbfuncionarios.txt", "w");
 
         fprintf(file, "%d\n", 1);
-        fprintf(file, "%i;%s;%s;%s;%s;%s;%s;%s;%s;%s;%.2f;%s;\n", 1, "root", "root", "123456", "Ativo","TI", " ", " ", " ", " ", 0.00," ");
+        fprintf(file, "%i;%s;%s;%s;%s;%s;%s;%s;%s;%s;%.2f;%s;\n", 1, "Root", "tqqv", "345678", "Ativo","TI", "pwnn", "null", "null", "null", 0.00,dataAtual());
         printf("PRIMEIRO ACESSO - Usuario root cadastrado, consultar manual!");
         fclose(file);
         getch();
     }
 
-    FILE *file1 = fopen("dbdepartamentos.txt", "r"); //Abertura de base de dados de colaboradores para verificação se existe o usuário e senha informada
-    if(file1 == NULL)//Verificar se o arquivo foi aberto com sucesso, se não, finalizar programa
+    FILE *file1 = fopen("dbdepartamentos.txt", "r");
+    if(file1 == NULL)
     {
         FILE *file1 = fopen("dbdepartamentos.txt", "w");
 
         fprintf(file1, "%d\n", 1);
-        fprintf(file1, "%i,%s,%s,%s,\n", 0,"TI","Ativo","01/01/1970");
+        fprintf(file1, "%i,%s,%s,%s,\n", 0,"TI","Ativo",dataAtual());
         fclose(file1);
     }
     fclose(file1);
@@ -50,23 +49,23 @@ void telaLogin(int parametro)
     int i = 0;
     do
     {
-        senhaDigitada[i] = getch();//Solicita do caractere do atual loop
+        senhaDigitada[i] = getch();
 
-        if(senhaDigitada[i] == BACKSPACE && i > 0)//Verificação se o caractere digitado é backspace
+        if(senhaDigitada[i] == BACKSPACE && i > 0)
         {
-            printf("\b");//retorna visualmente o cursor de digitação
-            putchar(' ');//coloca o espaço vazio para que a * suma
-            printf("\b");//novamente retorna visualmente o cursor de digitação
+            printf("\b");
+            putchar(' ');
+            printf("\b");
 
-            senhaDigitada[i] = '\0';//Troca caratete na posição [i] por um \0 que significa nulo ou final de vetor
-            senhaDigitada[i-1] = '\0';//Troca caratete na posição [i - 1] por um \0 que significa nulo
-            i--;//Retorna o [i] para que seja digitado um novo caractere apos a exclusão
+            senhaDigitada[i] = '\0';
+            senhaDigitada[i-1] = '\0';
+            i--;
         }
 
-        if((senhaDigitada[i] > 32 && senhaDigitada[i] < 127)) //Engloba todos os caracteres az-09-simbolos e a tecla enter
+        if((senhaDigitada[i] > 32 && senhaDigitada[i] < 127))
         {
-            putchar('*');//coloca um * visual no console
-            i++;//sobe para a próxima posição [i] para que seja digitado um novo char
+            putchar('*');
+            i++;
         }
         else if (senhaDigitada[i] == ENTER)
         {
@@ -74,26 +73,23 @@ void telaLogin(int parametro)
         }
     }
     while(senhaDigitada[i-1] != ENTER);
-    senhaDigitada[i-1] = '\0';//Após o fim do loop, o enter é substituido por um \0 que significa nulo
+    senhaDigitada[i-1] = '\0';
 
     FILE *login;
-    login = fopen("dbfuncionarios.txt", "r"); //Abertura de base de dados de colaboradores para verificação se existe o usuário e senha informada
+    login = fopen("dbfuncionarios.txt", "r");
 
-    char linha[256];//Reservar espaço para armazenamento das linhas do loop abaixo
-    fgets(linha, 256, login);//Função auxiliar para pular a primeira linha do arquivo de funcionarios
+    char linha[256];
+    fgets(linha, 256, login);
 
-    while(fgets(linha, 256, login) != NULL)//Loop para retirar conteúdo das linhas e jogar na variavel acima, enquando a linha for diferente de null
+    while(fgets(linha, 256, login) != NULL)
     {
-        strtok(linha, ";");//Iniciação de função strtok que separa o conteúdo da variavel até o delimitador
-        strtok(NULL, ";");//Separa o conteúdo da variavel anterior até o próximo delimitador (Os dois primeiros dados da linha não são utilizados)
-
+        strtok(linha, ";");
+        strtok(NULL, ";");
         char* usuarioDb = decriptarValor(strtok(NULL, ";"));
         char* senhaDb = decriptarValor(strtok(NULL, ";"));
         strtok(NULL, ";");
-        char* departamentoDb = decriptarValor(strtok(NULL, ";"));
+        char* departamentoDb = strtok(NULL, ";");
 
-        //Verificação se o usuário e senha batem com algum colaborador do banco de dados
-        //Se for verdadeiro chama o menu principal passando os parametros nome do usuário e o nivel de permissões
         if (strcmp(usuarioDb, usuarioDigitado) == 0 && strcmp(senhaDb, senhaDigitada) == 0)
         {
             cls();
@@ -109,8 +105,6 @@ void telaLogin(int parametro)
             break;
         }
     }
-    //Se o while acabar na última linha, significa que nenhum colaborador da base de dados atendeu a condição acima
-    //Então volta para a função telaLogin passando o parametro 0 (Dados inválidos)
     fclose(login);
     telaLogin(0);
 }

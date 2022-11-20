@@ -27,8 +27,9 @@
 #define HRED        "\e[0;91m"
 
 #define ESC 27
-#define CHAVE 0
 #define ENTER 13
 #define BACKSPACE 8
+
+#define CHAVE 2
 
 #endif // BIBLIOTECAS_H_INCLUDED

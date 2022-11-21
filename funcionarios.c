@@ -25,7 +25,7 @@ void exportar(Funcionarios **f, int quant)
         fclose(exportar);
         system("start Consulta.csv");
 
-        system("cls");
+        cls();
         printf("Exportacao concluida.\n");
         getch();
     }
@@ -74,7 +74,7 @@ int lerArquivo(Funcionarios **f)
 void consultarFuncionarios(Funcionarios **f, int quant)
 {
     int i;
-    system("cls");
+    cls();
     cabecalho();
 
     printf("\nLista de colaboradores:\n\n");
@@ -105,12 +105,12 @@ int fDeletar(Funcionarios **f, int quant)
         strcpy(f[id]->fAtivoInativo,"Inativo");
 
         printf("\nFuncionario deletado com sucesso!\n");
-        system("pause");
+        getch();
     }
     else
     {
         printf("---------Codigo invalido---------\n");
-        system("pause");
+        getch();
     }
     return 1;
 }
@@ -119,7 +119,7 @@ int fCadastrar(Funcionarios **f, int quant)
 {
     Funcionarios *novo = malloc(sizeof(Funcionarios));
 
-    system("cls");
+    cls();
     cabecalho();
 
     novo->fCod = quant + 1;
@@ -211,7 +211,7 @@ int fCadastrar(Funcionarios **f, int quant)
 
     strcpy(novo->fDataCadastro, dataAtual());
 
-    system("pause");
+    getch();
 
     f[quant] = novo;
 
@@ -380,7 +380,7 @@ void fRelatorio(Funcionarios **f, int quant)
 
     int id;
 
-    system("cls");
+    cls();
     consultarFuncionarios(f, quant);
 
     printf("\n Digite o ID do funcionário: ");
@@ -444,7 +444,7 @@ void telaFuncionarios()
     {
         salvarCadastro(lista, quant);
 
-        system("cls");
+        cls();
         cabecalho();
 
         printf("\n Funcionários\n\n");

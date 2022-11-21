@@ -3,14 +3,18 @@
 
 void cabecalho();
 void cabecalhoErro();
+void cabecalhoLoginSucesso(char usuarioDb[]);
+
 char* dataAtual();
 char* maiusculo(char textoRecebido[]);
 int numerico(char variavel[]);
 int alfabeto(char variavel[]);
 char* alfabeticoLimite(int num);
 char* numericoLimite(int num);
+
 char* encriptarValor(char textoRecebido[]);
 char* decriptarValor(char textoRecebido[]);
+
 void cls(void);
 
 #endif // AUXILIARES_H_INCLUDED

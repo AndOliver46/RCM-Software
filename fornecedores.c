@@ -1,5 +1,6 @@
 #include "bibliotecas.h"
 #include "fornecedores.h"
+#include "auxiliares.h"
 
 typedef struct //Aqui temos a definição da Struct. Uma vez definida, podemos declarar qualquer
 //variável com ela(struct cadastro cliente ou struct cadastro funcionario)
@@ -25,7 +26,7 @@ void cadfornecedor()
     else
     {
         int opcao = 0;
-        system("cls");
+        cls();
         cabecalho();
 
         printf("\nCadastro de fornecedor\n");
@@ -85,7 +86,7 @@ void cadfornecedor()
         else
         {
             printf("\nOPÇÃO INVÁLIDA.\n");
-            system("pause");
+            getch();
         }
     }
 
@@ -126,7 +127,7 @@ void consulta()
                 printf("Cidade: %s\n", forn.cidade);
                 printf("Estado: %s\n\n", forn.uf);
                 printf("Status: %s\n\n", forn.status);
-                system("pause");
+                getch();
                 erro = 1;
                 break;
             }
@@ -373,7 +374,7 @@ void ativaInativa()
         scanf("%d",&opcao);
         getchar();
 
-        system("cls");
+        cls();
         switch (opcao)
         {
         case 1:
@@ -486,7 +487,7 @@ void relatorioMenu()
         scanf("%d",&opcao);
         getchar();
 
-        system("cls");
+        cls();
         switch(opcao)
         {
         case 1:
@@ -531,7 +532,7 @@ void fornecedores()
         scanf("%d",&opcao);
         getchar();
 
-        system("cls");
+        cls();
         switch (opcao)
         {
         case 1:

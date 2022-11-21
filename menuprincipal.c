@@ -109,7 +109,7 @@ void menuPrincipal(char usuarioLogado[], char nivelPermissao[])
             }
         default:
             cls();
-            printf("\nDigite uma opção válida!\n\n");
+            printf("\n Digite uma opção válida!\n\n");
             getch();
             cls();
             break;

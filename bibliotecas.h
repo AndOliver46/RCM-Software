@@ -8,6 +8,9 @@
 #include <conio.h>
 #include <windows.h>
 #include <time.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #define RED2        "\x1b[31m"
 #define RESET       "\x1b[0m"

@@ -6,7 +6,7 @@ Cliente ctt;
 
 void consultarCliente()
 {
-    system ("cls");
+    cls();
     cabecalho();
 
     int erro = 0;
@@ -48,14 +48,14 @@ void consultarCliente()
         }
         fclose(arquivo);
     }
-    system ("pause");
+    getch();
 }
 
 
 
 void telacadastro()
 {
-    system ("cls");
+    cls();
     cabecalho();
 
     FILE *arquivo;
@@ -122,8 +122,8 @@ void telacadastro()
 
         strcpy (ctt.status,"ativo");
 
-        printf("\n Cadastro realizado com sucesso!\n\n");
-        system ("pause");
+        printf("\n Cadastro realizado com sucesso!");
+        getch();
 
         fwrite(&ctt,sizeof(Cliente),1,arquivo);
 
@@ -133,7 +133,7 @@ void telacadastro()
 
 void Catualizar()
 {
-    system ("cls");
+    cls();
     cabecalho();
 
     char dadocpf[15];
@@ -249,7 +249,7 @@ void Catualizar()
 void crelatorio()
 {
 
-    system ("cls");
+    cls();
 
     FILE *arquivo;
 
@@ -285,7 +285,7 @@ void crelatorio()
 
 void Telaexclui()
 {
-    system ("cls");
+    cls();
     cabecalho();
 
     char dadocpf[15];
@@ -360,7 +360,7 @@ void clientes()
 
     while (opcao != 0)
     {
-        system ("cls");
+        cls();
         cabecalho();
 
         printf("\n Clientes");

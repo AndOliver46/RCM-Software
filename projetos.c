@@ -8,7 +8,7 @@ Cliente ctt;
 
 void telaProjetos()
 {
-    system ("cls");
+    cls();
     int opcao = 0;
 
     do
@@ -54,7 +54,7 @@ void telaProjetos()
 
 void cadProjeto()
 {
-    system("cls");
+    cls();
     cabecalho();
 
     int opcao = 0, option = 0, conf = 0, optstatus = 0;
@@ -143,7 +143,7 @@ void cadProjeto()
         scanf("%120[^\n]",proj.descricao);
         getchar();
 
-        system ("cls");
+        cls();
         cabecalho();
 
         printf("\n\nProjeto Numero: %s\n", proj.projetoN);
@@ -367,7 +367,7 @@ void consultaProj()
         scanf("%d",&opcao);
         getchar();
 
-        system("cls");
+        cls();
         switch (opcao)
         {
         case 1:
@@ -393,7 +393,7 @@ void consultaProj()
 
 void chamaCliente()
 {
-    system("cls");
+    cls();
     cabecalho();
 
     char ddcpfcnpj[15];
@@ -471,7 +471,7 @@ void telaAtualiza()
 
             if(strcmp(proj.projetoN, prjt)== 0)
             {
-                system("cls");
+                cls();
                 cabecalho();
 
                 printf("\nProjeto Numero: %s\n", proj.projetoN);

@@ -93,12 +93,8 @@ void telaLogin(int parametro)
         if (strcmp(usuarioDb, usuarioDigitado) == 0 && strcmp(senhaDb, senhaDigitada) == 0)
         {
             cls();
-            printf("********************************************************************************************************************\n");
-            printf("\t\t\t\t\t\tLogado com sucesso!\n");
-            printf("\t\t\t\t\t\tBem-vindo(a) %s\n", usuarioDb);
-            printf("********************************************************************************************************************\n\n");
-
-            system("pause");
+            cabecalhoLoginSucesso(usuarioDb);
+            getch();
 
             fclose(login);
             menuPrincipal(usuarioDb, departamentoDb);

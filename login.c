@@ -87,10 +87,10 @@ void telaLogin(int parametro)
         strtok(NULL, ";");
         char* usuarioDb = decriptarValor(strtok(NULL, ";"));
         char* senhaDb = decriptarValor(strtok(NULL, ";"));
-        strtok(NULL, ";");
+        char* statusDb = strtok(NULL, ";");
         char* departamentoDb = strtok(NULL, ";");
 
-        if (strcmp(usuarioDb, usuarioDigitado) == 0 && strcmp(senhaDb, senhaDigitada) == 0)
+        if (strcmp(usuarioDb, usuarioDigitado) == 0 && strcmp(senhaDb, senhaDigitada) == 0 && strcmp(statusDb, "Ativo") == 0)
         {
             cls();
             cabecalhoLoginSucesso(usuarioDb);

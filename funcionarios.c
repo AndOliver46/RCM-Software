@@ -211,6 +211,7 @@ int fCadastrar(Funcionarios **f, int quant)
 
     strcpy(novo->fDataCadastro, dataAtual());
 
+    printf("\n\n Cadastro realizado com sucesso!");
     getch();
 
     f[quant] = novo;

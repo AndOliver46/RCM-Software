@@ -12,7 +12,7 @@ void telaLogin(int parametro)
 
         fprintf(file, "%d\n", 1);
         fprintf(file, "%i;%s;%s;%s;%s;%s;%s;%s;%s;%s;%.2f;%s;\n", 1, "Root", "tqqv", "345678", "Ativo","TI", "pwnn", "null", "null", "null", 0.00,dataAtual());
-        printf("PRIMEIRO ACESSO - Usuario root cadastrado, consultar manual!");
+        printf("PRIMEIRO ACESSO - Usuario root cadastrado!");
         fclose(file);
         getch();
     }

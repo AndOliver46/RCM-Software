@@ -267,7 +267,7 @@ void crelatorio()
 
     else
     {
-        fprintf(excel,"Código;Nome;CPF/CNPJ;Endereço;Email;Telefone;Status\n\n");
+        fprintf(excel,"Código;Nome;CPF/CNPJ;Endereço;Telefone;Email;Status\n\n");
         while((fread(&ctt, sizeof(Cliente),1,arquivo))==1 )
         {
             fprintf(excel,"%s;%s;%s;%s;%s;%s;%s\n",ctt.codigo,ctt.nome,ctt.cpfcnpj,ctt.endereco,ctt.telefone,ctt.email,ctt.status);
